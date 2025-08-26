@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoRiwi - Sobre Nosotros</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css"
+        rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #6366f1, #8b5cf6);
+            --bg-gradient: linear-gradient(135deg, #1a1d3a 0%, #2d1b69 35%, #4338ca 100%);
+            --card-bg: rgba(99, 102, 241, 0.1);
+            --card-border: rgba(99, 102, 241, 0.2);
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a1d3a 0%, #2d1b69 35%, #4338ca 100%);
+            color: white;
+            overflow-x: hidden;
+        }
+
+
+        /* Custom animations */
+        @keyframes glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 0 30px rgba(99, 102, 241, 0.8);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Custom navbar */
+        .navbar-custom {
+            background: rgba(26, 29, 58, 0.9) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--card-border);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--text-muted) !important;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            padding: 0.5rem 1rem !important;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: white !important;
+            background: var(--card-bg);
+        }
+
+        /* Custom buttons */
+        .btn-primary-custom {
+            background: var(--primary-gradient);
+            border: none;
+            font-weight: 600;
+            padding: 0.75rem 2rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            animation: glow 2s infinite;
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-outline-custom {
+            color: var(--text-muted);
+            border: 1px solid #475569;
+            font-weight: 500;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-custom:hover {
+            color: #6366f1;
+            border-color: #6366f1;
+            background: transparent;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 4rem 2rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-logo {
+            font-size: 80px;
+            color: #ffffff;
+            margin-bottom: 4rem;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .mission-vision {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 4rem 0;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 2rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            height: 240px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(100, 181, 246, 0.3);
+        }
+
+        .card h3 {
+            margin-top: -25px;
+            font-size: 22px;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+        }
+
+        .card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+
+
+        .values-section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #ffffff;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .value-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 270px;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .value-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .security-icon {
+            background: linear-gradient(135deg, #008cff 0%, #21cbf3 100%);
+        }
+
+        .community-icon {
+            background: linear-gradient(135deg, #337235 0%, #8bc34a 100%);
+        }
+
+        .innovation-icon {
+            background: linear-gradient(135deg, #9c27b0 0%, #eb5587 100%);
+        }
+
+        .excellence-icon {
+            background: linear-gradient(135deg, #ff3c00 0%, #ff9800 100%);
+        }
+
+        .value-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .value-card p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .team-section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .team-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .team-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .team-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-role {
+            color: #64b5f6;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .team-description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .history-section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .timeline {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 3rem;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            margin-right: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .blue-dot {
+            background: #2196f3;
+        }
+
+        .green-dot {
+            background: #4caf50;
+        }
+
+        .purple-dot {
+            background: #9c27b0;
+        }
+
+        .timeline-content h4 {
+            font-size: 1.2rem;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .footer-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            gap: 4rem;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2.5rem;
+            flex: 1;
+        }
+
+        .cta-card {
+            background: linear-gradient(135deg, #7c4dff 0%, #536dfe 100%);
+            border-radius: 16px;
+            padding: 3rem;
+            text-align: center;
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            height: 370px;
+        }
+
+        .cta-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .contact-card h3,
+        .cta-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .contact-icon {
+            width: 20px;
+            height: 20px;
+            color: #64b5f6;
+        }
+
+        .cta-description {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .cta-button {
+            background: white;
+            color: #7c4dff;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button a {
+            text-decoration: none;
+            color: #2086da;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .team-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .team-avatar .emoji {
+            font-size: 56px;
+            line-height: 1;
+            user-select: none;
+            transform: none !important;
+            filter: none !important;
+            font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+        }
+
+        .team-card:hover .emoji {
+            transform: none !important;
+            filter: none !important;
+        }
+
+        /* --- resto de estilos iguales --- */
+        @keyframes glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 0 30px rgba(99, 102, 241, 0.8);
+            }
+        }
+
+        /* --- RESPONSIVE --- */
+
+        /* Tablets y portátiles medianos */
+        @media (max-width: 1024px) {
+            .mission-vision {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .footer-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .cta-card {
+                height: auto;
+            }
+        }
+
+        /* Celulares grandes y tablets pequeñas */
+        @media (max-width: 768px) {
+            .hero-logo {
+                font-size: 50px;
+                margin-top: 80px;
+                margin-bottom: 2rem;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                padding: 2rem;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .timeline-dot {
+                margin-bottom: 0.5rem;
+            }
+
+            .footer-section {
+                gap: 2rem;
+            }
+
+            .contact-card,
+            .cta-card {
+                padding: 2rem;
+            }
+        }
+
+        /* Celulares pequeños (menos de 480px) */
+        @media (max-width: 480px) {
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+
+            .hero-logo {
+                font-size: 40px;
+                margin-top: 70px;
+            }
+
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .card,
+            .value-card,
+            .team-card {
+                padding: 1.5rem;
+                height: auto;
+            }
+
+            .value-card {
+                text-align: center;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .cta-button {
+                width: 100%;
+                padding: 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="dashboard.html">CryptoRiwi</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">Inicio</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Canjear</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Educación</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about_us.html">Nosotros</a>
+                    </li>
+                </ul>
+
+                <div class="d-flex gap-2">
+                    <a href="login.html" class="btn btn-outline-custom">Iniciar Sesión</a>
+                    <a href="register.html" class="btn btn-primary-custom">Registrarse</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero-section">
+        <div class="hero-logo">CryptoRiwi</div>
+        <h1 class="hero-title">Sobre CryptoRiwi</h1>
+        <p class="hero-description">
+            Somos una plataforma dedicada a democratizar el acceso a las criptomonedas y la
+            educación financiera, construyendo el futuro de las finanzas digitales.
+        </p>
+    </div>
+
+    <div class="mission-vision">
+        <div class="card">
+            <h3>Nuestra Misión</h3>
+            <p>
+                Hacer que las criptomonedas y las finanzas digitales sean accesibles para
+                todos, proporcionando educación de calidad, herramientas seguras y una
+                experiencia intuitiva que empodere a las personas a tomar control de su
+                futuro financiero.
+            </p>
+        </div>
+        <div class="card">
+            <h3>Nuestra Visión</h3>
+            <p>
+                Ser la plataforma líder en educación financiera y servicios de criptomonedas
+                en América Latina, creando un ecosistema donde millones de personas
+                puedan participar en la economía digital del futuro.
+            </p>
+        </div>
+    </div>
+
+
+    <div class="values-section">
+        <h2 class="section-title">Nuestros Valores</h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon security-icon">
+                    <i class="bi bi-shield-lock-fill"></i>
+                </div>
+                <h4>Seguridad</h4>
+                <p>Implementamos los más altos estándares de seguridad para proteger tus activos digitales.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon community-icon">
+                    <i class="bi bi-people-fill"></i>
+                </div>
+                <h4>Comunidad</h4>
+                <p>Construimos una comunidad sólida de aprendices y expertos en criptomonedas.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon innovation-icon">
+                    <i class="bi bi-lightbulb-fill"></i>
+                </div>
+                <h4>Innovación</h4>
+                <p>Desarrollamos continuamente nuevas funcionalidades para mejorar tu experiencia.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon excellence-icon">
+                    <i class="bi bi-award-fill"></i>
+                </div>
+                <h4>Excelencia</h4>
+                <p>Nos comprometemos a ofrecer el mejor servicio y soporte a nuestros usuarios.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="team-section">
+        <h2 class="section-title">Nuestro Equipo</h2>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-avatar">
+                    <span class="emoji">👨‍💼</span>
+                </div>
+                <div class="team-name">Santiago Ochoa</div>
+                <div class="team-role">CEO & Founder</div>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">
+                    <span class="emoji">👨‍💻</span>
+                </div>
+                <div class="team-name">Jose Manuel Bustamante</div>
+                <div class="team-role">Developer</div>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">
+                    <span class="emoji">👨‍💻</span>
+                </div>
+                <div class="team-name">Daniel Alexander Ariza</div>
+                <div class="team-role">Developer</div>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">
+                    <span class="emoji">👩‍🎨</span>
+                </div>
+                <div class="team-name">María Jose Agudelo</div>
+                <div class="team-role">Designer</div>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">
+                    <span class="emoji">🛠️</span>
+                </div>
+                <div class="team-name">Braian Cardona</div>
+                <div class="team-role">Azure DevOps</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="history-section">
+        <div class="timeline">
+            <h2 class="section-title">Nuestra Historia</h2>
+            <div class="timeline-item">
+                <div class="timeline-dot blue-dot"></div>
+                <div class="timeline-content">
+                    <h4>2025 - Fundación</h4>
+                    <p>CryptoRiwi nace con la visión de democratizar el acceso a las criptomonedas.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot green-dot"></div>
+                <div class="timeline-content">
+                    <h4>2026 - Expansión</h4>
+                    <p>Lanzamos nuestra plataforma educativa y alcanzamos 5,000 usuarios.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot purple-dot"></div>
+                <div class="timeline-content">
+                    <h4>2027 - Crecimiento</h4>
+                    <p>Ampliamos nuestros servicios financieros digitales y fortalecimos alianzas estratégicas.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-section">
+        <div class="contact-card">
+            <h3>Contáctanos</h3>
+            <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 2rem;">
+                ¿Tienes preguntas? Estamos aquí para ayudarte
+            </p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div>
+                        <strong>Email</strong><br>
+                        contact@cryptoriwi.com
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <div>
+                        <strong>Teléfono</strong><br>
+                        +57 300 123 4567
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div>
+                        <strong>Oficina</strong><br>
+                        Medellin - De moda Outlet, Colombia
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-card">
+            <h3>¿Listo para comenzar?</h3>
+            <p class="cta-description">
+                Únete a nuestra comunidad y comienza tu jornada en el mundo cripto
+            </p>
+            <button class="cta-button"><a href="register.html">Crear Cuenta Gratis</a></button>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
