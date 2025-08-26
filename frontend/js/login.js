@@ -16,16 +16,16 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
     const data = await response.json();
 
     if (data.success) {
-      document.getElementById("login-message").textContent = "✅ Login exitoso!";
+      document.getElementById("login-message").textContent = "✅ Successful login!";
       document.getElementById("login-message").classList.remove("text-danger");
       document.getElementById("login-message").classList.add("text-success");
       // redirigir a dashboard
-      window.location.href = "/dashboard.html";
+      window.location.href = "http://localhost:3000/dashboard";
     } else {
-      document.getElementById("login-message").textContent = "❌ Credenciales incorrectas";
+      document.getElementById("login-message").textContent = "❌ Incorrect credentials";
     }
   } catch (err) {
     console.error(err);
-    document.getElementById("login-message").textContent = "⚠️ Error de servidor";
+    document.getElementById("login-message").textContent = "⚠️ Server error";
   }
 });
