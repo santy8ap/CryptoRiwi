@@ -26,6 +26,10 @@
             background: var(--bg-gradient);
             color: white;
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding-top: var(--navbar-height);
         }
 
         /* Custom animations */
@@ -367,9 +371,38 @@
                 padding: 2rem 1rem;
             }
         }
+         .footer { margin-top: auto; padding: 3rem 0; background: linear-gradient(180deg, rgba(18,20,40,0.75), rgba(14,16,30,0.85)); color: #e6eef8; border-top: 1px solid rgba(99,102,241,0.08); }
+
+  .footer .footer-brand { color: white; text-decoration: none; }
+  .footer .footer-title { color: white; font-weight: 700; margin-bottom: .75rem; }
+  .footer .text-muted-small { color: rgba(255,255,255,0.68); font-size: .95rem; }
+  .footer .footer-link { color: rgba(255,255,255,0.88); text-decoration: none; display: inline-block; padding: .125rem 0; transition: color .18s ease, transform .12s ease; }
+  .footer .footer-link:hover,
+  .footer .footer-link:focus { color: white; transform: translateY(-2px); text-decoration: none; outline: none; }
+
+  .social-btn { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 8px; background: rgba(255,255,255,0.03); color: white; text-decoration: none; transition: transform .18s ease, background .18s ease; }
+  .social-btn:hover,
+  .social-btn:focus { transform: translateY(-4px); background: rgba(99,102,241,0.14); outline: none; }
+
+  .form-control { background: rgba(255,255,255,0.03); border: 1px solid rgba(99,102,241,0.06); color: #e8eefc; padding: .5rem .65rem; border-radius: .375rem; }
+  .form-control::placeholder { color: rgba(255,255,255,0.44); }
+  .btn-course { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; border: none; padding: .375rem .6rem; border-radius: .5rem; }
+
+  /* Accessible focus */
+  .footer a:focus, .footer button:focus, .footer input:focus { outline: 3px solid rgba(99,102,241,0.22); outline-offset: 2px; }
+
+  /* Small screens: stack and center */
+  @media (max-width: 767.98px) {
+    .footer { padding: 2.25rem 0; text-align: center; }
+    .footer .row > [class*="col-"] { text-align: center; }
+    .footer .d-flex.gap-3 { justify-content: center; }
+    .social-btn { margin-inline: .15rem; }
+  }
     </style>
 </head>
 <body>
+
+    <main>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
         <div class="container">
@@ -389,7 +422,7 @@
                         <a class="nav-link" href="#">Canjear</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Educación</a>
+                        <a class="nav-link" href="./courses.html">Educación</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Nosotros</a>
@@ -397,8 +430,8 @@
                 </ul>
                 
                 <div class="d-flex gap-2">
-                    <a href="#" class="btn btn-outline-custom">Iniciar Sesión</a>
-                    <a href="#" class="btn btn-primary-custom">Registrarse</a>
+                    <a href="./login.html" class="btn btn-outline-custom">Iniciar Sesión</a>
+                    <a href="./register.html" class="btn btn-primary-custom">Registrarse</a>
                 </div>
             </div>
         </div>
@@ -467,9 +500,9 @@
                         <div class="coin-logo">RWC</div>
                         <h2 class="coin-title">¿Qué es RiwiCoin?</h2>
                         <p class="coin-description">
-                            RiwiCoin (RWC) es nuestra criptomoneda educativa que recompensa el aprendizaje y permite
+                            RiwiCoin (RWC) es nuestra moneda educativa que recompensa el aprendizaje y permite
                             acceder a productos y servicios dentro del ecosistema Riwi. Cada reto completado, cada
-                            lección aprendida te acerca más a dominar la tabla de clasificación.
+                            lección aprendida te acerca más a dominar el mundo crypto.
                         </p>
                     </div>
                 </div>
@@ -499,20 +532,20 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-md-6">
+                <!-- <div class="col-lg-3 col-md-6">
                     <div class="ecosystem-card">
                         <div class="card-icon icon-buy">
-                            <i class="bi bi-wallet2"></i>
+                            <i class="bi bi-currency-bitcoin"></i>
                         </div>
-                        <h3 class="card-title">Comprar RiwiCoin</h3>
+                        <h3 class="card-title">Compra Bitcoin</h3>
                         <p class="card-description">
-                            Adquiere RiwiCoin de forma segura y sencilla
+                            Accede fácilmente al mundo de las criptomonedas adquiriendo Bitcoin de forma segura y rápida. ¡Empieza tu viaje crypto hoy!
                         </p>
                         <a href="#" class="card-link">
-                            Comprar RWC <i class="bi bi-arrow-right"></i>
+                            Comprar Bitcoin <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="col-lg-3 col-md-6">
                     <div class="ecosystem-card">
@@ -544,74 +577,74 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Stats -->
-            <div class="stats-section">
-                <div class="row g-4">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="stat-card">
-                            <div class="stat-number">1.5M</div>
-                            <div class="stat-label">RiwiCoin en Circulación</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="stat-card">
-                            <div class="stat-number">$0,000.1</div>
-                            <div class="stat-label">Precio Actual RWC</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="stat-card">
-                            <div class="stat-number">5</div>
-                            <div class="stat-label">Holders de RiwiCoin</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="stat-card">
-                            <div class="stat-number">10+</div>
-                            <div class="stat-label">Productos Disponibles</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
+        </main>
+            
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <h2 class="cta-title">¿Listo para unirte a la revolución RiwiCoin?</h2>
-                    <p class="cta-description">
-                        Comienza tu journey educativo y gana RiwiCoin mientras aprendes
-                    </p>
-                    <a href="#" class="btn btn-cta btn-cta-hover">
-                        Obtener Mi Primera RiwiCoin
-                    </a>
-                    <style>
-                        .btn-cta-hover {
-                            background: white;
-                            color: #6366f1;
-                            border: 2px solid #6366f1;
-                            box-shadow: 0 0 0 rgba(99,102,241,0);
-                            transition: 
-                                background 0.3s,
-                                color 0.3s,
-                                border-color 0.3s,
-                                box-shadow 0.3s;
-                        }
-                        .btn-cta-hover:hover {
-                            background: linear-gradient(135deg, #e9cc0e, #8b5cf6);
-                            color: #fff;
-                            border-color: #8b5cf6;
-                            box-shadow: 0 8px 24px rgba(99,102,241,0.25);
-                        }
-                    </style>
-                </div>
-            </div>
+           
+<!-- footer -->
+<footer class="footer" role="contentinfo">
+  <div class="container py-5">
+    <div class="row gy-4 align-items-start">
+      <!-- Brand / About -->
+      <div class="col-md-4">
+        <a href="./dashboard.html" class="d-inline-flex align-items-center mb-2 footer-brand" aria-label="CryptoRiwi - Ir al inicio">
+          <span class="fs-4 fw-bold">CryptoRiwi</span>
+        </a>
+        <p class="mb-3 text-muted-small">
+          Aprende sobre criptomonedas, trading y DeFi. Gana RiwiCoins mientras avanzas en tu ruta de aprendizaje.
+        </p>
+        
+        <div class="d-flex gap-2 mt-2" aria-hidden="false">
+          <a class="social-btn" href="#" aria-label="Twitter" title="Twitter" rel="noopener noreferrer"><i class="bi bi-twitter fs-5" aria-hidden="true"></i></a>
+          <a class="social-btn" href="#" aria-label="LinkedIn" title="LinkedIn" rel="noopener noreferrer"><i class="bi bi-linkedin fs-5" aria-hidden="true"></i></a>
+          <a class="social-btn" href="#" aria-label="YouTube" title="YouTube" rel="noopener noreferrer"><i class="bi bi-youtube fs-5" aria-hidden="true"></i></a>
         </div>
-    </section>
+      </div>
+
+      <!-- Quick links -->
+      <nav class="col-md-3" aria-label="Enlaces rápidos">
+        <h6 class="footer-title">Enlaces</h6>
+        <ul class="list-unstyled mb-0">
+          <li><a href="./dashboard.html" class="footer-link">Inicio</a></li>
+          <li><a href="#" class="footer-link">Academia</a></li>
+          <li><a href="#" class="footer-link">Canjear</a></li>
+        </ul>
+      </nav>
+
+      <!-- Cursos -->
+      <div class="col-md-3">
+        <h6 class="footer-title">Cursos populares</h6>
+        <ul class="list-unstyled mb-0">
+          <li><a href="#" class="footer-link">Fundamentos de Blockchain</a></li>
+          <li><a href="#" class="footer-link">Trading y Análisis Técnico</a></li>
+          <li><a href="#" class="footer-link">DeFi y Liquidity Pools</a></li>
+          <li><a href="#" class="footer-link">NFTs y Activos Digitales</a></li>
+        </ul>
+      </div>
+
+     
+   
+
+    <hr class="my-4 opacity-25">
+
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+      <small class="text-muted-small">© <time datetime="2025">2025</time> CryptoRiwi. Todos los derechos reservados.</small>
+      <div class="d-flex gap-3">
+        <a href="#" class="footer-link">Términos</a>
+        <a href="#" class="footer-link">Privacidad</a>
+        <a href="#" class="footer-link">Soporte</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+
+
+
 
     <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
@@ -697,6 +730,5 @@
             });
         });
     </script>
-    <script src=""></script>
 </body>
 </html>
