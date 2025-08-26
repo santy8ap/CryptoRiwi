@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>CryptoRiwi — Lección: Blockchain & Trading</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#0f1724;
+    --card: rgba(99,102,241,0.08);
+    --accent: linear-gradient(135deg,#6366f1,#8b5cf6);
+    --muted:#9aa6c0;
+  }
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:Inter,system-ui,Roboto,Arial;
+    background: radial-gradient(circle at 10% 10%, rgba(99,102,241,0.06), transparent 20%), var(--bg);
+    color:#e6eef8;
+    padding-top:64px;
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+  }
+
+  .navbar-custom{background: rgba(6,8,20,0.85);border-bottom:1px solid rgba(255,255,255,0.03);backdrop-filter:blur(6px)}
+  .navbar-text { color:var(--muted); font-size:.95rem; }
+
+  .wrap{max-width:1000px;margin:0 auto;width:100%;padding:1rem;}
+  .card-simple{background:var(--card);border:1px solid rgba(99,102,241,0.12);border-radius:12px;padding:1rem}
+
+  .video-player{background:#000;border-radius:10px;aspect-ratio:16/9;display:grid;place-items:center;position:relative;overflow:hidden}
+  .overlay-play{width:72px;height:72px;border-radius:50%;display:grid;place-items:center;background:rgba(99,102,241,0.95);cursor:pointer;border:2px solid rgba(255,255,255,0.06)}
+  .video-player video, .video-player iframe{width:100%;height:100%;object-fit:cover;display:block;border-radius:8px}
+
+  .progress-wrap{background:rgba(255,255,255,0.05);height:12px;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,0.03)}
+  .progress-fill{height:100%;width:0;background:var(--accent);transition:width .2s linear}
+
+  .btn-completed{display:none}
+
+  .option{background:rgba(255,255,255,0.02);padding:.6rem;border-radius:8px;border:1px solid rgba(255,255,255,0.03);cursor:pointer;margin-bottom:.5rem}
+  .option.correct{border-color: #10b981;background: rgba(16,185,129,0.08)}
+  .option.wrong{border-color:#ef4444;background: rgba(239,68,68,0.04)}
+  .option.disabled{opacity:.8;pointer-events:none}
+
+  footer{margin-top:auto;padding:1rem;text-align:center;color:var(--muted);font-size:.9rem}
+  @media (max-width:600px){ .wrap{padding:0.75rem} }
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark navbar-custom">
+  <div class="container wrap">
+    <a class="navbar-brand" href="#">CryptoRiwi</a>
+    <div class="ms-auto navbar-text" id="rwc-display"><i class="bi bi-coin"></i> 1,250 RWC</div>
+  </div>
+</nav>
+
+<main class="wrap" id="main">
+  <header class="card-simple mb-3">
+    <h1 style="margin:0;font-size:1.25rem">Lección: Blockchain y Seguridad</h1>
+    <p style="margin:.3rem 0 0;color:var(--muted)">Lección 4 de 8 — ¿Qué es un bloque?</p>
+  </header>
+
+  <!-- Video + progreso -->
+  <section class="card-simple mb-3" aria-labelledby="lesson-title">
+    <h2 id="lesson-title" style="font-size:1rem;margin:0 0 .5rem">Reproductor</h2>
+
+    <!-- data-video puede ser:
+         - URL directa de .mp4 (reproducible por <video>)
+         - URL de YouTube o youtu.be (se tratará como iframe embed y simulación de progreso)
+         Opcional: data-duration (segundos) para simular duración en iframe -->
+    <div id="videoPlayer" class="video-player mb-3"
+         role="region" aria-label="Reproductor de lección"
+         data-video="https://www.youtube.com/watch?v=V9Kr2SujqHw"
+         data-duration="120">
+      <div class="overlay-play" id="playToggle" role="button" aria-label="Reproducir / Pausar" tabindex="0">
+        <svg id="playIcon" width="28" height="28" viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M3 2.5v11l10-5.5L3 2.5z" fill="#fff"/>
+        </svg>
+      </div>
+
+      <div id="videoFallback" style="display:none;color:var(--muted);text-align:center;padding:1rem;">
+        No se puede reproducir el video aquí.
+        <br><a id="fallbackLink" href="#" target="_blank" rel="noopener" style="color:#6366f1;text-decoration:underline">Ver en otra pestaña</a>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:.75rem;align-items:center;justify-content:space-between">
+      <div style="flex:1">
+        <div class="progress-wrap" role="progressbar" aria-label="Progreso de la lección" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="progress-fill" id="lessonProgress"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:.85rem;color:var(--muted);margin-top:.35rem">
+          <span id="progressPct">0%</span>
+          <span id="timeRemaining">—</span>
+        </div>
+      </div>
+
+      <div style="width:160px;margin-left:1rem;text-align:right">
+        <button class="btn btn-success btn-completed" id="completedBtn" aria-hidden="true"><i class="bi bi-check-circle"></i> Completado</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contenido breve + quiz -->
+  <section class="card-simple mb-3">
+    <h3 style="margin-top:0;margin-bottom:.5rem">Objetivos rápidos</h3>
+    <ul style="color:var(--muted);margin-top:0;margin-bottom:1rem">
+      <li>¿Qué es un bloque?</li>
+      <li>Cómo se encadenan los bloques</li>
+      <li>Implicaciones de seguridad</li>
+    </ul>
+
+    <hr style="border-color:rgba(255,255,255,0.04)">
+
+    <h4 style="font-size:1rem;margin:.5rem 0">Mini quiz — gana 10 RWC si aciertas</h4>
+    <div id="quiz" aria-labelledby="">
+      <div class="option" data-correct="false" tabindex="0">A) RSI &gt; 70 indica sobreventa</div>
+      <div class="option" data-correct="true" tabindex="0">B) RSI &gt; 70 indica sobrecompra</div>
+      <div class="option" data-correct="false" tabindex="0">C) RSI no tiene límites</div>
+    </div>
+  </section>
+
+  <!-- Contenido de blockchain -->
+  <section class="card-simple mb-3">
+    <h3 style="margin-top:0;margin-bottom:.5rem">¿Qué es Blockchain?</h3>
+    <p style="color:var(--muted)">
+      Blockchain registra transacciones en bloques enlazados de forma inmutable y descentralizada. Es la base de las criptomonedas y muchas aplicaciones financieras.
+    </p>
+    <ul style="color:var(--muted)">
+      <li>Descentralización</li>
+      <li>Transparencia</li>
+      <li>Seguridad criptográfica</li>
+    </ul>
+  </section>
+
+  <section class="card-simple mb-3">
+    <h4 style="margin-top:0;margin-bottom:.5rem">Mini quiz Blockchain — gana 10 RWC si aciertas</h4>
+    <div id="quiz2">
+      <div class="option" data-correct="false" tabindex="0">A) Blockchain es centralizada</div>
+      <div class="option" data-correct="true" tabindex="0">B) Blockchain es pública y descentralizada</div>
+      <div class="option" data-correct="false" tabindex="0">C) Blockchain solo sirve para Bitcoin</div>
+    </div>
+  </section>
+</main>
+
+<footer>CryptoRiwi • Aprende y gana RiwiCoins</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  const LESSON_KEY = 'rw:lesson:4:8:done';
+  const ELAPSED_KEY = 'rw:lesson:4:8:elapsed';
+  const RWC_KEY = 'rw:rwc';
+  const COMPLETE_AWARD = 50;
+  const QUIZ_AWARD = 10;
+  const DEFAULT_SIM_SECONDS = 120;
+
+  const vp = document.getElementById('videoPlayer');
+  const playToggle = document.getElementById('playToggle');
+  const progressFill = document.getElementById('lessonProgress');
+  const pctLabel = document.getElementById('progressPct');
+  const timeLabel = document.getElementById('timeRemaining');
+  const completedBtn = document.getElementById('completedBtn');
+  const fallbackLink = document.getElementById('fallbackLink');
+
+  function getRwc(){
+    const s = localStorage.getItem(RWC_KEY);
+    if (s != null) return Number(s);
+    const el = document.getElementById('rwc-display');
+    if (el){
+      const m = el.textContent.match(/([\d,]+)/);
+      if (m) { const n = Number(m[1].replace(/,/g,'')); localStorage.setItem(RWC_KEY,String(n)); return n; }
+    }
+    localStorage.setItem(RWC_KEY,'0');
+    return 0;
+  }
+  function setRwc(n){
+    localStorage.setItem(RWC_KEY,String(n));
+    const el = document.getElementById('rwc-display');
+    if (el) el.innerHTML = '<i class="bi bi-coin"></i> ' + Number(n).toLocaleString() + ' RWC';
+  }
+
+  let rwc = getRwc();
+  setRwc(rwc);
+
+  function setProgressPct(pct){
+    pct = Math.max(0, Math.min(100, Math.round(pct)));
+    progressFill.style.width = pct + '%';
+    pctLabel.textContent = pct + '%';
+    const remainingSec = Math.max(0, Math.ceil((100 - pct) / 100 * simTotal));
+    timeLabel.textContent = remainingSec > 0 ? remainingSec + ' s restantes' : 'Completado';
+    const progWrap = document.querySelector('.progress-wrap');
+    if (progWrap) progWrap.setAttribute('aria-valuenow', String(pct));
+    if (pct >= 100){
+      completedBtn.style.display = 'inline-block';
+      completedBtn.removeAttribute('aria-hidden');
+      completedBtn.disabled = false;
+    } else {
+      completedBtn.style.display = 'none';
+      completedBtn.setAttribute('aria-hidden','true');
+    }
+  }
+
+  function awardCompletion(){
+    if (localStorage.getItem(LESSON_KEY) === '1') return;
+    rwc = getRwc() + COMPLETE_AWARD;
+    setRwc(rwc);
+    localStorage.setItem(LESSON_KEY,'1');
+    alert('¡Lección completada!\nHas ganado ' + COMPLETE_AWARD + ' RWC 🎉\nTotal: ' + rwc.toLocaleString() + ' RWC');
+  }
+
+  // prepare video/iframe detection
+  const rawVideo = (vp && vp.dataset && vp.dataset.video) ? vp.dataset.video.trim() : '';
+  const isYouTube = rawVideo.includes('youtube.com') || rawVideo.includes('youtu.be') || rawVideo.includes('youtube');
+  const isMP4 = rawVideo.match(/\.(mp4|webm|ogg)(\?.*)?$/i);
+  const durationAttr = Number(vp.dataset.duration) || null;
+  const simTotal = durationAttr || DEFAULT_SIM_SECONDS;
+
+  let simElapsed = Number(localStorage.getItem(ELAPSED_KEY)) || Math.round(simTotal * 0.6);
+  let simTimer = null;
+  let running = false;
+  let videoEl = null;
+  let iframeEl = null;
+
+  function simTick(){
+    simElapsed++;
+    localStorage.setItem(ELAPSED_KEY, String(simElapsed));
+    const pct = (simElapsed / simTotal) * 100;
+    setProgressPct(pct);
+    if (simElapsed >= simTotal){
+      clearInterval(simTimer);
+      running = false;
+      awardCompletion();
+    }
+  }
+
+  if (isMP4){
+    // use native video
+    videoEl = document.createElement('video');
+    videoEl.controls = true;
+    videoEl.preload = 'metadata';
+    videoEl.src = rawVideo;
+    videoEl.playsInline = true;
+    videoEl.style.width = '100%';
+    videoEl.style.height = '100%';
+    vp.innerHTML = '';
+    vp.appendChild(videoEl);
+    // sync progress
+    videoEl.addEventListener('timeupdate', () => {
+      if (!videoEl.duration) return;
+      setProgressPct((videoEl.currentTime / videoEl.duration) * 100);
+    });
+    videoEl.addEventListener('ended', () => {
+      setProgressPct(100);
+      awardCompletion();
+    });
+    playToggle.addEventListener('click', () => {
+      if (videoEl.paused) { videoEl.play().catch(()=>{}); playToggle.style.display='none'; }
+      else videoEl.pause();
+    });
+    playToggle.addEventListener('keydown', (e)=>{ if (e.key==='Enter'||e.key===' ') { e.preventDefault(); playToggle.click(); }});
+    if (localStorage.getItem(LESSON_KEY) === '1') setProgressPct(100);
+  } else if (isYouTube){
+    // use iframe autoplay on demand and simulate progress (can't read timeupdate from cross-origin)
+    const youtubeIdMatch = rawVideo.match(/(?:v=|\/embed\/|youtu\.be\/)([A-Za-z0-9_-]{6,})/);
+    const youtubeId = youtubeIdMatch ? youtubeIdMatch[1] : null;
+    const embedBase = youtubeId ? 'https://www.youtube.com/embed/' + youtubeId : null;
+    fallbackLink.href = rawVideo.includes('watch') ? rawVideo : (youtubeId ? 'https://www.youtube.com/watch?v=' + youtubeId : rawVideo);
+
+    playToggle.addEventListener('click', () => {
+      if (localStorage.getItem(LESSON_KEY) === '1'){ setProgressPct(100); return; }
+      // create iframe only once
+      if (!iframeEl && embedBase){
+        iframeEl = document.createElement('iframe');
+        iframeEl.src = embedBase + '?autoplay=1&mute=1&rel=0';
+        iframeEl.allow = 'autoplay; encrypted-media';
+        iframeEl.setAttribute('allowfullscreen','');
+        iframeEl.style.border = '0';
+        vp.insertBefore(iframeEl, vp.firstChild);
+        // hide overlay after play
+        playToggle.style.display = 'none';
+      }
+      if (!running){
+        running = true;
+        simTimer = setInterval(simTick, 1000);
+        playToggle.style.display = 'none';
+      }
+    });
+    playToggle.addEventListener('keydown', (e)=>{ if (e.key==='Enter'||e.key===' ') { e.preventDefault(); playToggle.click(); }});
+    // show fallback link (if no embed id)
+    if (!embedBase) document.getElementById('videoFallback').style.display = 'block';
+    setProgressPct((simElapsed / simTotal) * 100);
+    if (localStorage.getItem(LESSON_KEY) === '1') setProgressPct(100);
+    window.addEventListener('beforeunload', ()=> { if (simTimer) clearInterval(simTimer); localStorage.setItem(ELAPSED_KEY,String(simElapsed)); });
+  } else if (rawVideo){
+    // unknown provider URL: show fallback link
+    document.getElementById('videoFallback').style.display = 'block';
+    fallbackLink.href = rawVideo;
+    setProgressPct((simElapsed / simTotal) * 100);
+  } else {
+    // no video provided: use simulation only
+    setProgressPct((simElapsed / simTotal) * 100);
+    playToggle.addEventListener('click', ()=> {
+      if (localStorage.getItem(LESSON_KEY) === '1'){ setProgressPct(100); return; }
+      if (running){ clearInterval(simTimer); running = false; playToggle.innerHTML = '<svg width="28" height="28" viewBox="0 0 16 16"><path d="M3 2.5v11l10-5.5L3 2.5z" fill="#fff"/></svg>'; }
+      else { running = true; playToggle.innerHTML = '<svg width="28" height="28" viewBox="0 0 16 16"><path d="M3 2h3v12H3V2zm7 0h3v12h-3V2z" fill="#fff"/></svg>'; simTimer = setInterval(simTick,1000); }
+    });
+    playToggle.addEventListener('keydown', (e)=>{ if (e.key==='Enter'||e.key===' ') { e.preventDefault(); playToggle.click(); }});
+    window.addEventListener('beforeunload', ()=> { if (simTimer) clearInterval(simTimer); localStorage.setItem(ELAPSED_KEY,String(simElapsed)); });
+  }
+
+  completedBtn.addEventListener('click', ()=> {
+    if (localStorage.getItem(LESSON_KEY) !== '1'){
+      setProgressPct(100);
+      awardCompletion();
+      completedBtn.disabled = true;
+    } else {
+      alert('Lección ya completada.');
+    }
+  });
+
+  // generic quiz setup
+  function setupQuiz(rootId, award){
+    const root = document.getElementById(rootId);
+    if (!root) return;
+    root.addEventListener('click', (e)=>{
+      const opt = e.target.closest('.option');
+      if (!opt) return;
+      if (root.dataset.answered === '1') return;
+      const correct = opt.dataset.correct === 'true';
+      Array.from(root.children).forEach(ch => {
+        ch.classList.add('disabled');
+        if (ch.dataset.correct === 'true') ch.classList.add('correct');
+      });
+      if (correct){
+        rwc = getRwc() + Number(award);
+        setRwc(rwc);
+        alert('¡Correcto! +' + award + ' RWC');
+      } else {
+        opt.classList.add('wrong');
+        alert('Incorrecto. Revisa la lección.');
+      }
+      root.dataset.answered = '1';
+    });
+    Array.from(root.children).forEach(ch => {
+      ch.tabIndex = 0;
+      ch.addEventListener('keydown', (e)=> { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); ch.click(); }});
+    });
+  }
+
+  setupQuiz('quiz', QUIZ_AWARD);
+  setupQuiz('quiz2', QUIZ_AWARD);
+
+  // init progress if missing
+  (function initProgress(){
+    if (!progressFill.style.width || progressFill.style.width === '0%'){
+      setProgressPct(Math.min(100, Math.round((simElapsed / simTotal) * 100)));
+    }
+  })();
+
+})();
+</script>
+
+</body>
+</html>
