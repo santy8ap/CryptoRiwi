@@ -16,12 +16,16 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
     const data = await response.json();
 
     if (data.success) {
-      document.getElementById("login-message").textContent = "✅ Successful login!";
-      document.getElementById("login-message").classList.remove("text-danger");
-      document.getElementById("login-message").classList.add("text-success");
-      // redirigir a dashboard
-      window.location.href = "http://localhost:3000/dashboard";
-    } else {
+  document.getElementById("login-message").textContent = "✅ Successful login!";
+  document.getElementById("login-message").classList.remove("text-danger");
+  document.getElementById("login-message").classList.add("text-success");
+
+  localStorage.setItem("isLoggedIn", "true");
+  localStorage.setItem("user", JSON.stringify(data.user));
+
+  // Redirigir a dashboard
+  window.location.href = "./dashboard.html";
+} else {
       document.getElementById("login-message").textContent = "❌ Incorrect credentials";
     }
   } catch (err) {
