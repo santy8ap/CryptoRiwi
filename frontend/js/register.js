@@ -34,7 +34,7 @@ document.getElementById("register-form").addEventListener("submit", async (e) =>
       document.getElementById("register-message").classList.add("text-success");
 
       setTimeout(() => {
-        window.location.href = "http://127.0.0.1:5500/frontend/login.html";
+        window.location.href = "../login.html";
       }, 1500);
     } else {
       document.getElementById("register-message").textContent = "Error: " + data.message;

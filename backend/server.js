@@ -2,12 +2,21 @@ import express from 'express';
 import mysql from 'mysql2';
 import cors from 'cors';
 import bcrypt from 'bcrypt';  
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = 3000;
 
 app.use(cors());
 app.use(express.json());
+
+app.use(express.static(path.join(__dirname, '../frontend')));
+
+app.use("/styles", express.static(path.join(__dirname, "..", "styles")));
 
 // MySQL connection
 const db = mysql.createConnection({
@@ -91,9 +100,17 @@ app.post("/login", async (req, res) => {
         console.error("Login error:", error);
         return res.status(500).json({ success: false, message: "Server error" });
     }
-})
+});
 
+
+app.get('/dashboard', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'frontend', 'dashboard.html'));
+});
+
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'frontend', 'login.html'));
+});
 
 app.listen(PORT, () => {
     console.log("Server running on port " + PORT);
-})
+});
