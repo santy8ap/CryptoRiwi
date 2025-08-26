@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoRiwi - Academia Financiera</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #6366f1, #8b5cf6);
+            --bg-gradient: linear-gradient(135deg, #1a1d3a 0%, #2d1b69 35%, #4338ca 100%);
+            --card-bg: rgba(99, 102, 241, 0.1);
+            --card-border: rgba(99, 102, 241, 0.2);
+            --text-muted: #94a3b8;
+            --success-gradient: linear-gradient(135deg, #10b981, #059669);
+            --warning-gradient: linear-gradient(135deg, #f59e0b, #d97706);
+            --danger-gradient: linear-gradient(135deg, #ef4444, #dc2626);
+        }
+
+        body {
+            padding-top: 80px;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-gradient);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Custom navbar */
+        .navbar-custom {
+            background: rgba(26, 29, 58, 0.95) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--card-border);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--text-muted) !important;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            padding: 0.5rem 1rem !important;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: white !important;
+            background: var(--card-bg);
+        }
+
+        /* Hero section */
+        .hero-section {
+            padding: 8rem 0 4rem;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff, #a5b4fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        /* Course cards */
+        .course-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 0;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            height: 100%;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(99, 102, 241, 0.5);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+        }
+
+        .course-header {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .course-thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .course-level {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        .level-beginner { background: var(--success-gradient); }
+        .level-intermediate { background: var(--warning-gradient); }
+        .level-advanced { background: var(--danger-gradient); }
+
+        .course-duration {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: white;
+        }
+
+        .course-content {
+            padding: 2rem;
+        }
+
+        .course-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .course-description {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+            font-size: 0.9rem;
+        }
+
+        .course-stats {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.8rem;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            color: var(--text-muted);
+        }
+
+        .course-progress {
+            margin-bottom: 1.5rem;
+        }
+
+        .progress-bar-custom {
+            background: rgba(99, 102, 241, 0.2);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary-gradient);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .btn-course {
+            width: 100%;
+            background: var(--primary-gradient);
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 0.75rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-course:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+            color: white;
+        }
+
+        /* Learning path section */
+        .learning-path {
+            background: rgba(99, 102, 241, 0.05);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .path-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .path-step:hover {
+            background: rgba(99, 102, 241, 0.15);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-right: 1rem;
+        }
+
+        .step-content h6 {
+            margin-bottom: 0.25rem;
+            color: white;
+        }
+
+        .step-content p {
+            margin-bottom: 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Practice section */
+        .practice-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .practice-card:hover {
+            border-color: rgba(99, 102, 241, 0.5);
+            background: rgba(99, 102, 241, 0.15);
+        }
+
+        .practice-question {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .practice-option {
+            background: rgba(99, 102, 241, 0.05);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .practice-option:hover {
+            background: rgba(99, 102, 241, 0.1);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        /* Stats dashboard */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(99, 102, 241, 0.5);
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Video player mockup */
+        .video-player {
+            background: #000;
+            border-radius: 12px;
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: rgba(99, 102, 241, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+            background: rgba(99, 102, 241, 1);
+        }
+
+        /* Content sections */
+        .content-section {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Rewards system */
+        .reward-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--success-gradient);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: 0.25rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .course-content {
+                padding: 1.5rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="./dashboard.html">CryptoRiwi</a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./dashboard.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Academia</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Canjear</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Nosotros</a>
+                    </li>
+                </ul>
+                
+                <div class="d-flex gap-2">
+                    <span class="navbar-text text-muted">
+                        <i class="bi bi-coin"></i> 1,250 RWC
+                    </span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h1 class="hero-title">Academia Financiera CryptoRiwi</h1>
+                    <p class="hero-subtitle">
+                        Domina el mundo de las criptomonedas y finanzas digitales con nuestros cursos diseñados por expertos. 
+                        Aprende a tu ritmo y gana RiwiCoins mientras te conviertes en un experto financiero.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Dashboard -->
+    <section class="container mb-5">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="bi bi-trophy"></i></div>
+                <div class="stat-number">3/5</div>
+                <div class="stat-label">Cursos Completados</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="bi bi-clock"></i></div>
+                <div class="stat-number">24h</div>
+                <div class="stat-label">Tiempo de Estudio</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="bi bi-coin"></i></div>
+                <div class="stat-number">1,250</div>
+                <div class="stat-label">RiwiCoins Ganados</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="bi bi-graph-up"></i></div>
+                <div class="stat-number">85%</div>
+                <div class="stat-label">Progreso General</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Path -->
+    <section class="container mb-5">
+        <div class="content-section">
+            <h2 class="section-title">Tu Ruta de Aprendizaje Recomendada</h2>
+            <p class="section-subtitle">Sigue esta secuencia para obtener el máximo provecho de tu educación financiera</p>
+            
+            <div class="learning-path">
+                <div class="path-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h6>Fundamentos de Blockchain</h6>
+                        <p>Comprende la tecnología detrás de las criptomonedas</p>
+                    </div>
+                    <div class="ms-auto">
+                        <span class="badge bg-success">Completado</span>
+                    </div>
+                </div>
+                <div class="path-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h6>Introducción a Bitcoin</h6>
+                        <p>La primera y más importante criptomoneda del mundo</p>
+                    </div>
+                    <div class="ms-auto">
+                        <span class="badge bg-success">Completado</span>
+                    </div>
+                </div>
+                <div class="path-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h6>Trading y Análisis Técnico</h6>
+                        <p>Aprende a leer gráficos y tomar decisiones informadas</p>
+                    </div>
+                    <div class="ms-auto">
+                        <span class="badge bg-warning">En Progreso</span>
+                    </div>
+                </div>
+                <div class="path-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h6>DeFi y Finanzas Descentralizadas</h6>
+                        <p>El futuro de los servicios financieros</p>
+                    </div>
+                    <div class="ms-auto">
+                        <span class="badge bg-secondary">Bloqueado</span>
+                    </div>
+                </div>
+                <div class="path-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h6>NFTs y Activos Digitales</h6>
+                        <p>Comprende los tokens no fungibles y su valor</p>
+                    </div>
+                    <div class="ms-auto">
+                        <span class="badge bg-secondary">Bloqueado</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Grid -->
+    <section class="container mb-5">
+        <h2 class="section-title text-center mb-4">Cursos Disponibles</h2>
+        
+        <div class="row">
+            <!-- Course 1: Fundamentos de Blockchain -->
+            <div class="col-lg-4 col-md-6">
+                <div class="course-card">
+                    <div class="course-header">
+                        <div class="course-thumbnail">
+                            <i class="bi bi-link-45deg"></i>
+                        </div>
+                        <span class="course-level level-beginner">Principiante</span>
+                        <span class="course-duration"><i class="bi bi-clock"></i> 4h 30m</span>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Fundamentos de Blockchain</h3>
+                        <p class="course-description">
+                            Descubre cómo funciona la tecnología blockchain, sus aplicaciones y por qué es tan revolucionaria. 
+                            Aprende conceptos como hash, bloques, nodos y consenso.
+                        </p>
+                        <div class="course-stats">
+                            <div class="stat-item">
+                                <i class="bi bi-person"></i>
+                                <span>12,445 estudiantes</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="bi bi-star-fill"></i>
+                                <span>4.5/5</span>
+                            </div>
+                        </div>
+                        <div class="course-progress">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted">Progreso</span>
+                                <span class="text-muted">0%</span>
+                            </div>
+                            <div class="progress-bar-custom">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <div class="reward-badge">
+                                <i class="bi bi-coin"></i> +500 RWC
+                            </div>
+                            <div class="reward-badge">
+                                <i class="bi bi-gem"></i> NFT Exclusivo
+                            </div>
+                        </div>
+                        <button class="btn btn-course" disabled>
+                            <i class="bi bi-lock"></i> Curso Bloqueado
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 6: Inversión a Largo Plazo -->
+            <div class="col-lg-4 col-md-6">
+                <div class="course-card">
+                    <div class="course-header">
+                        <div class="course-thumbnail">
+                            <i class="bi bi-trending-up"></i>
+                        </div>
+                        <span class="course-level level-intermediate">Intermedio</span>
+                        <span class="course-duration"><i class="bi bi-clock"></i> 3h 30m</span>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Inversión a Largo Plazo (HODL)</h3>
+                        <p class="course-description">
+                            Estrategias de inversión a largo plazo en criptomonedas. Aprende sobre dollar-cost averaging, 
+                            portfolio diversificado y psicología del inversor.
+                        </p>
+                        <div class="course-stats">
+                            <div class="stat-item">
+                                <i class="bi bi-person"></i>
+                                <span>11,234 estudiantes</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="bi bi-star-fill"></i>
+                                <span>4.8/5</span>
+                            </div>
+                        </div>
+                        <div class="course-progress">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted">Progreso</span>
+                                <span class="text-muted">0%</span>
+                            </div>
+                            <div class="progress-bar-custom">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <div class="reward-badge">
+                                <i class="bi bi-coin"></i> +300 RWC
+                            </div>
+                            <div class="reward-badge">
+                                <i class="bi bi-trophy"></i> Badge HODLER
+                            </div>
+                        </div>
+                        <button class="btn btn-course" disabled>
+                            <i class="bi bi-lock"></i> Curso Bloqueado
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Current Course Section -->
+    <section class="container mb-5">
+        <div class="content-section">
+            <h2 class="section-title">Curso Actual: Trading y Análisis Técnico</h2>
+            <p class="section-subtitle">Lección 4 de 8: Indicadores Técnicos y Osciladores</p>
+            
+            <!-- Video Player -->
+            <div class="video-player mb-4">
+                <div class="play-button">
+                    <i class="bi bi-play-fill"></i>
+                </div>
+            </div>
+            
+            <!-- Lesson Content -->
+            <div class="row">
+                <div class="col-lg-8">
+                    <h4 class="mb-3">Indicadores Técnicos más Importantes</h4>
+                    <p class="mb-4">
+                        Los indicadores técnicos son herramientas matemáticas que nos ayudan a analizar el comportamiento 
+                        del precio y el volumen de un activo. En esta lección aprenderemos sobre los más utilizados:
+                    </p>
+                    
+                    <h5 class="mb-3">1. Medias Móviles (Moving Averages)</h5>
+                    <p class="mb-3">
+                        Las medias móviles suavizan los datos de precio para crear un indicador que sigue la tendencia. 
+                        Son especialmente útiles para identificar la dirección general del mercado.
+                    </p>
+                    <ul class="mb-4">
+                        <li><strong>Media Móvil Simple (SMA):</strong> Promedio aritmético de los precios en un período determinado</li>
+                        <li><strong>Media Móvil Exponencial (EMA):</strong> Da más peso a los precios más recientes</li>
+                        <li><strong>Cruces de medias:</strong> Señales de compra y venta cuando se cruzan diferentes períodos</li>
+                    </ul>
+                    
+                    <h5 class="mb-3">2. RSI (Relative Strength Index)</h5>
+                    <p class="mb-3">
+                        El RSI es un oscilador que mide la velocidad y magnitud de los cambios de precio. 
+                        Se mueve entre 0 y 100, siendo útil para identificar condiciones de sobrecompra y sobreventa.
+                    </p>
+                    <ul class="mb-4">
+                        <li><strong>RSI > 70:</strong> Posible condición de sobrecompra (señal de venta)</li>
+                        <li><strong>RSI < 30:</strong> Posible condición de sobreventa (señal de compra)</li>
+                        <li><strong>Divergencias:</strong> Cuando el precio y el RSI se mueven en direcciones opuestas</li>
+                    </ul>
+                    
+                    <h5 class="mb-3">3. MACD (Moving Average Convergence Divergence)</h5>
+                    <p class="mb-4">
+                        El MACD es un indicador de momentum que muestra la relación entre dos medias móviles exponenciales. 
+                        Es excelente para identificar cambios de tendencia y generar señales de trading.
+                    </p>
+                    
+                    <div class="alert alert-info">
+                        <i class="bi bi-lightbulb"></i>
+                        <strong>Consejo Pro:</strong> Nunca uses un solo indicador para tomar decisiones. 
+                        Combina varios indicadores y siempre considera el contexto del mercado general.
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="practice-card">
+                        <h6>📊 Datos del Mercado en Tiempo Real</h6>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>BTC/USD</span>
+                            <span class="text-success">$43,250 (+2.4%)</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>ETH/USD</span>
+                            <span class="text-danger">$2,650 (-1.2%)</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>RWC/USD</span>
+                            <span class="text-success">$2.45 (+0.8%)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="practice-card">
+                        <h6>🎯 Objetivos de la Lección</h6>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" checked>
+                            <label class="form-check-label">Entender qué son los indicadores técnicos</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" checked>
+                            <label class="form-check-label">Aprender sobre medias móviles</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox">
+                            <label class="form-check-label">Dominar el uso del RSI</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox">
+                            <label class="form-check-label">Interpretar señales del MACD</label>
+                        </div>
+                    </div>
+                    
+                    <div class="practice-card">
+                        <h6>⏱️ Progreso de la Lección</h6>
+                        <div class="progress-bar-custom mb-2">
+                            <div class="progress-fill" style="width: 60%"></div>
+                        </div>
+                        <small class="text-muted">12 min restantes</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Practice Section -->
+    <section class="container mb-5">
+        <div class="content-section">
+            <h2 class="section-title">Práctica Interactiva</h2>
+            <p class="section-subtitle">Pon a prueba tus conocimientos con estos ejercicios prácticos</p>
+            
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="practice-card">
+                        <div class="practice-question">
+                            1. ¿Qué indica un RSI mayor a 70?
+                        </div>
+                       <button type="button" class="practice-option" aria-pressed="false">A) El activo está sobrevendido</button>
+                        <div class="practice-option">
+                            B) El activo está sobrecomprado ✓
+                        </div>
+                        <div class="practice-option">
+                            C) El activo está en equilibrio
+                        </div>
+                        <div class="practice-option">
+                            D) No se puede determinar
+                        </div>
+                        <div class="mt-2">
+                            <small class="text-success">
+                                <i class="bi bi-check-circle"></i> Correcto! Ganas +10 RWC
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="practice-card">
+                        <div class="practice-question">
+                            2. ¿Cuál es la diferencia principal entre SMA y EMA?
+                        </div>
+                        <div class="practice-option">
+                            A) SMA es más rápida que EMA
+                        </div>
+                        <div class="practice-option">
+                            B) EMA da más peso a precios recientes ✓
+                        </div>
+                        <div class="practice-option">
+                            C) No hay diferencia
+                        </div>
+                        <div class="practice-option">
+                            D) SMA es más precisa
+                        </div>
+                        <div class="mt-2">
+                            <small class="text-success">
+                                <i class="bi bi-check-circle"></i> Excelente! Ganas +10 RWC
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="practice-card">
+                        <div class="practice-question">
+                            3. ¿Qué componentes forman el indicador MACD?
+                        </div>
+                        <div class="practice-option">
+                            A) Solo la línea MACD
+                        </div>
+                        <div class="practice-option">
+                            B) MACD y línea de señal
+                        </div>
+                        <div class="practice-option">
+                            C) MACD, señal e histograma ✓
+                        </div>
+                        <div class="practice-option">
+                            D) Ninguna de las anteriores
+                        </div>
+                        <div class="mt-2">
+                            <small class="text-success">
+                                <i class="bi bi-check-circle"></i> Perfecto! Ganas +15 RWC
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="practice-card">
+                        <div class="practice-question">
+                            4. En un mercado alcista, ¿qué posición deberían tener las medias móviles?
+                        </div>
+                        <div class="practice-option">
+                            A) Todas iguales
+                        </div>
+                        <div class="practice-option">
+                            B) MA corta debajo de MA larga
+                        </div>
+                        <div class="practice-option">
+                            C) MA corta encima de MA larga ✓
+                        </div>
+                        <div class="practice-option">
+                            D) No importa la posición
+                        </div>
+                        <div class="mt-2">
+                            <small class="text-success">
+                                <i class="bi bi-check-circle"></i> Increíble! Ganas +15 RWC
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <div class="alert alert-success d-inline-block">
+                    <i class="bi bi-trophy"></i>
+                    <strong>¡Excelente trabajo!</strong> Has ganado 50 RWC completando esta práctica
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Resources -->
+    <section class="container mb-5">
+        <div class="content-section">
+            <h2 class="section-title">Recursos Adicionales</h2>
+            <p class="section-subtitle">Material complementario para profundizar tu aprendizaje</p>
+            
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="practice-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="bi bi-file-earmark-pdf fs-3 me-3" style="color: #ef4444;"></i>
+                            <div>
+                                <h6 class="mb-1">Guía de Indicadores Técnicos</h6>
+                                <small class="text-muted">PDF - 24 páginas</small>
+                            </div>
+                        </div>
+                        <p class="mb-3">Guía completa con ejemplos prácticos de todos los indicadores técnicos más utilizados en trading.</p>
+                        <a href="#" class="btn btn-sm btn-outline-primary">Descargar PDF</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="practice-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="bi bi-calculator fs-3 me-3" style="color: #10b981;"></i>
+                            <div>
+                                <h6 class="mb-1">Calculadora de RSI</h6>
+                                <small class="text-muted">Herramienta interactiva</small>
+                            </div>
+                        </div>
+                        <p class="mb-3">Calcula el RSI de cualquier activo en tiempo real y practica interpretando las señales.</p>
+                        <a href="#" class="btn btn-sm btn-outline-success">Usar Calculadora</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="practice-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="bi bi-graph-up fs-3 me-3" style="color: #f59e0b;"></i>
+                            <div>
+                                <h6 class="mb-1">Simulador de Trading</h6>
+                                <small class="text-muted">Práctica sin riesgo</small>
+                            </div>
+                        </div>
+                        <p class="mb-3">Practica trading con dinero virtual usando los indicadores que has aprendido.</p>
+                        <a href="#" class="btn btn-sm btn-outline-warning">Abrir Simulador</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="container mb-5">
+        <div class="content-section">
+            <h2 class="section-title">Comunidad de Aprendizaje</h2>
+            <p class="section-subtitle">Conéctate con otros estudiantes y comparte experiencias</p>
+            
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="practice-card">
+                        <h6 class="mb-3">💬 Foro de Discusión</h6>
+                        <div class="d-flex mb-3">
+                            <div class="bg-primary rounded-circle p-2 me-3" style="width: 40px; height: 40px;">
+                                <i class="bi bi-person-fill text-white"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h6 class="mb-1">María González</h6>
+                                <p class="mb-1">¿Alguien puede explicarme mejor las divergencias en el RSI?</p>
+                                <small class="text-muted">hace 2 horas - 5 respuestas</small>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <div class="bg-success rounded-circle p-2 me-3" style="width: 40px; height: 40px;">
+                                <i class="bi bi-person-fill text-white"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h6 class="mb-1">Carlos Rodríguez</h6>
+                                <p class="mb-1">Compartiendo mi estrategia con MACD que me ha funcionado muy bien</p>
+                                <small class="text-muted">hace 4 horas - 12 respuestas</small>
+                            </div>
+                        </div>
+                        <button class="btn btn-sm btn-primary w-100">Ver Todas las Discusiones</button>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="practice-card">
+                        <h6 class="mb-3">🏆 Ranking de Estudiantes</h6>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <div class="d-flex align-items-center">
+                                <span class="badge bg-warning me-2">1</span>
+                                <span>Ana Martínez</span>
+                            </div>
+                            <span class="text-warning">2,450 RWC</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <div class="d-flex align-items-center">
+                                <span class="badge bg-secondary me-2">2</span>
+                                <span>Luis Fernández</span>
+                            </div>
+                            <span>2,180 RWC</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <div class="d-flex align-items-center">
+                                <span class="badge bg-warning me-2">3</span>
+                                <span>Pedro Silva</span>
+                            </div>
+                            <span>1,950 RWC</span>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                <span class="badge bg-primary me-2">15</span>
+                                <span><strong>Tú</strong></span>
+                            </div>
+                            <span class="text-primary"><strong>1,250 RWC</strong></span>
+                        </div>
+                        <small class="text-muted d-block mt-2">¡Sigue estudiando para subir posiciones!</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>9/5</span>
+                            </div>
+                        </div>
+                        <div class="course-progress">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted">Progreso</span>
+                                <span class="text-success">100%</span>
+                            </div>
+                            <div class="progress-bar-custom">
+                                <div class="progress-fill" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <div class="reward-badge">
+                                <i class="bi bi-coin"></i> +200 RWC
+                            </div>
+                            <div class="reward-badge">
+                                <i class="bi bi-award"></i> Certificado
+                            </div>
+                        </div>
+                        <button class="btn btn-course">
+                            <i class="bi bi-check-circle"></i> Completado
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 2: Introducción a Bitcoin -->
+            <div class="col-lg-4 col-md-6">
+                <div class="course-card">
+                    <div class="course-header">
+                        <div class="course-thumbnail">
+                            <i class="bi bi-currency-bitcoin"></i>
+                        </div>
+                        <span class="course-level level-beginner">Principiante</span>
+                        <span class="course-duration"><i class="bi bi-clock"></i> 3h 45m</span>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Introducción a Bitcoin</h3>
+                        <p class="course-description">
+                            Comprende qué es Bitcoin, cómo funciona, su historia y por qué es considerado oro digital. 
+                            Aprende sobre wallets, transacciones y seguridad.
+                        </p>
+                        <div class="course-stats">
+                            <div class="stat-item">
+                                <i class="bi bi-person"></i>
+                                <span>18,234 estudiantes</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="bi bi-star-fill"></i>
+                                <span>4.8/5</span>
+                            </div>
+                        </div>
+                        <div class="course-progress">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted">Progreso</span>
+                                <span class="text-success">100%</span>
+                            </div>
+                            <div class="progress-bar-custom">
+                                <div class="progress-fill" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <div class="reward-badge">
+                                <i class="bi bi-coin"></i> +250 RWC
+                            </div>
+                            <div class="reward-badge">
+                                <i class="bi bi-award"></i> Certificado
+                            </div>
+                        </div>
+                        <button class="btn btn-course">
+                            <i class="bi bi-check-circle"></i> Completado
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 3: Trading y Análisis Técnico -->
+            <div class="col-lg-4 col-md-6">
+                <div class="course-card">
+                    <div class="course-header">
+                        <div class="course-thumbnail">
+                            <i class="bi bi-graph-up"></i>
+                        </div>
+                        <span class="course-level level-intermediate">Intermedio</span>
+                        <span class="course-duration"><i class="bi bi-clock"></i> 6h 20m</span>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Trading y Análisis Técnico</h3>
+                        <p class="course-description">
+                            Domina el arte del trading con análisis técnico. Aprende a leer gráficos, identificar patrones, 
+                            usar indicadores y gestionar el riesgo en tus inversiones.
+                        </p>
+                        <div class="course-stats">
+                            <div class="stat-item">
+                                <i class="bi bi-person"></i>
+                                <span>9,876 estudiantes</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="bi bi-star-fill"></i>
+                                <span>4.7/5</span>
+                            </div>
+                        </div>
+                        <div class="course-progress">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted">Progreso</span>
+                                <span class="text-warning">65%</span>
+                            </div>
+                            <div class="progress-bar-custom">
+                                <div class="progress-fill" style="width: 65%"></div>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <div class="reward-badge">
+                                <i class="bi bi-coin"></i> +400 RWC
+                            </div>
+                            <div class="reward-badge">
+                                <i class="bi bi-award"></i> Certificado Pro
+                            </div>
+                        </div>
+                        <button class="btn btn-course">
+                            <i class="bi bi-play-circle"></i> Continuar Curso
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 4: DeFi y Finanzas Descentralizadas -->
+            <div class="col-lg-4 col-md-6">
+                <div class="course-card">
+                    <div class="course-header">
+                        <div class="course-thumbnail">
+                            <i class="bi bi-bank2"></i>
+                        </div>
+                        <span class="course-level level-intermediate">Intermedio</span>
+                        <span class="course-duration"><i class="bi bi-clock"></i> 5h 15m</span>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">DeFi y Finanzas Descentralizadas</h3>
+                        <p class="course-description">
+                            Explora el mundo de las finanzas descentralizadas (DeFi). Aprende sobre yield farming, 
+                            liquidity pools, DEXs y cómo generar ingresos pasivos.
+                        </p>
+                        <div class="course-stats">
+                            <div class="stat-item">
+                                <i class="bi bi-person"></i>
+                                <span>7,623 estudiantes</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="bi bi-star-fill"></i>
+                                <span>4.6/5</span>
+                            </div>
+                        </div>
+                        <div class="course-progress">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted">Progreso</span>
+                                <span class="text-muted">0%</span>
+                            </div>
+                            <div class="progress-bar-custom">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <div class="reward-badge">
+                                <i class="bi bi-coin"></i> +350 RWC
+                            </div>
+                            <div class="reward-badge">
+                                <i class="bi bi-shield-check"></i> NFT Badge
+                            </div>
+                        </div>
+                        <button class="btn btn-course" disabled>
+                            <i class="bi bi-lock"></i> Completar Curso Anterior
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 5: NFTs y Activos Digitales -->
+            <div class="col-lg-4 col-md-6">
+                <div class="course-card">
+                    <div class="course-header">
+                        <div class="course-thumbnail">
+                            <i class="bi bi-image"></i>
+                        </div>
+                        <span class="course-level level-advanced">Avanzado</span>
+                        <span class="course-duration"><i class="bi bi-clock"></i> 4h 50m</span>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">NFTs y Activos Digitales</h3>
+                        <p class="course-description">
+                            Comprende los tokens no fungibles (NFTs), su creación, valoración y mercados. 
+                            Aprende sobre arte digital, coleccionables y utility NFTs.
+                        </p>
+                        <div class="course-stats">
+                            <div class="stat-item">
+                                <i class="bi bi-person"></i>
+                                <span>5,432 estudiantes</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="bi bi-star-fill"></i>
+                                <span>4.9/5</span>
+                            </div>
+                        </div>
+                        <div class="course-progress">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted">Progreso</span>
+                                <span class="text-muted">0%</span>
+                            </div>
+                            <div class="progress-bar-custom">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <div class="reward-badge">
+                                <i class="bi bi-coin"></i> +450 RWC
+                            </div>
+                            <div class="reward-badge">
+                                <i class="bi bi-palette"></i> NFT Art Badge
+                            </div>
+                        </div>
+                        <button class="btn btn-course" disabled>
+                            <i class="bi bi-lock"></i> Completar Curso Anterior
+                        </button>
+                    </div>
+                </div>
+            </div></button>
+
+
+                <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
