@@ -181,6 +181,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const educationBtn = document.getElementById("education-btn");
     const exchangeBtn = document.getElementById("exchange-btn");
     const walletBtn = document.getElementById("wallet-btn");
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (localStorage.getItem("isLoggedIn") === "true" && user) {
+        document.getElementById("user-name").innerHTML = user.first_name;
+    } else {
+        window.location.href = "./login.html";
+    }
 
     if (authButtons) {
         authButtons.innerHTML = `<button id="logout-btn" class="btn btn-outline-light" type="button">Logout</button>`;

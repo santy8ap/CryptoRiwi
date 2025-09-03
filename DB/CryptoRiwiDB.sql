@@ -1,4 +1,4 @@
-CREATE DATABASE CryptoRiwi;
+CREATE DATABASE IF NOT EXISTS CryptoRiwi;
 USE CryptoRiwi;
 
 CREATE TABLE users (
@@ -17,46 +17,13 @@ CREATE TABLE wallet (
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
 
-CREATE TABLE transactions (
-    transaction_id INT AUTO_INCREMENT PRIMARY KEY,
-    wallet_id INT NOT NULL,
-    type ENUM('deposit', 'withdrawal', 'purchase', 'reward', 'transfer', 'exchange') NOT NULL,
-    amount DECIMAL(18, 8) NOT NULL,
-    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (wallet_id) REFERENCES wallet(wallet_id) ON DELETE CASCADE
-);
-
-CREATE TABLE products (
-    product_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    type ENUM('course', 'ebook', 'subscription', 'event', 'merchandise', 'service') NOT NULL,
-    cost DECIMAL(18, 8) NOT NULL
-);
-
-CREATE TABLE exchanges (
-    exchange_id INT AUTO_INCREMENT PRIMARY KEY,
-    wallet_id INT NOT NULL,
-    product_id INT NOT NULL,
-    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (wallet_id) REFERENCES wallet(wallet_id) ON DELETE CASCADE,
-    FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE CASCADE
-);
-
-CREATE TABLE crypto_price(
-    cryptoPrice_id INT AUTO_INCREMENT PRIMARY KEY,
-    crypto_name VARCHAR(100) NOT NULL,
-    crypto_price DECIMAL(18, 8) NOT NULL,
-    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-INSERT INTO users (first_name, last_name, email, password, role) VALUES ('Jose', 'Monsalve', 'jose@mail.com', '1035854944x', 'admin');
-
-INSERT INTO wallet (user_id, balance) VALUES (1, 99999999.99);
-
-INSERT INTO transactions (wallet_id, type, amount) VALUES (1, 'reward', 9999999999.99);
-
-INSERT INTO products (name, type, cost) VALUES ('Python Full Course', 'course', 100000);
-
-INSERT INTO exchanges (wallet_id, product_id) VALUES (1, 1);
-
-INSERT INTO crypto_price (crypto_name, crypto_price) VALUES ('Riwicoin', 1000000000);
+-- Trigger: crear wallet automáticamente cuando se crea un usuario
+DELIMITER $$
+CREATE TRIGGER create_wallet_after_user
+AFTER INSERT ON users
+FOR EACH ROW
+BEGIN
+    INSERT INTO wallet (user_id, balance)
+    VALUES (NEW.user_id, 1000.00);
+END$$
+DELIMITER ;
