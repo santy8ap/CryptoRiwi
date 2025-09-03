@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RiwiWallet - Real-Time Crypto Price</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navbar-height: 72px;
+      --primary-gradient: linear-gradient(135deg, #6366f1, #8b5cf6);
+      --bg-gradient: linear-gradient(135deg, #1a1d3a 0%, #2d1b69 35%, #4338ca 100%);
+      --card-bg: rgba(99, 102, 241, 0.1);
+      --card-border: rgba(99, 102, 241, 0.2);
+      --text-muted: #94a3b8;
+      --form-bg: rgba(255, 255, 255, 0.05);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-gradient);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      padding-top: var(--navbar-height);
+    }
+
+    /* Navbar */
+    .navbar-custom {
+      height: var(--navbar-height);
+      background: rgba(26,29,58,0.9) !important;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--card-border);
+    }
+    .navbar-brand { font-weight: 700; font-size: 1.5rem; color: #fff; }
+    .navbar-nav .nav-link {
+      color: var(--text-muted) !important;
+      font-weight: 500;
+      margin: 0 0.5rem;
+      padding: 0.5rem 1rem !important;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link.active { color: white !important; background: var(--card-bg); }
+
+    /* Hero Section */
+    .hero-section { padding: 5rem 0 2rem; text-align: center; }
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg,#ffffff,#a5b4fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-highlight {
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    /* Dropdown Menu */
+    .crypto-selector {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    /* Chart Section */
+    .chart-container {
+      background: var(--form-bg);
+      border-radius: 20px;
+      padding: 1rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      height: 650px;
+    }
+    .tradingview-widget-container {
+      width: 100%;
+      height: 100%;
+    }
+    #tradingview_chart {
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    /* Footer */
+    .site-footer {
+      background: #000000cf;
+      color: #dfe7ff;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      margin-top: auto;
+      padding: 2rem 0;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">CryptoRiwi</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a class="nav-link" href="./dashboard.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="./exchange.html">Exchange</a></li>
+          <li class="nav-item"><a class="nav-link" href="./courses.html">Education</a></li>
+          <li class="nav-item"><a class="nav-link" href="./about_us.html">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="./wallet.html">Wallet</a></li>
+        </ul>
+        <div class="d-flex gap-2" id="auth-buttons">
+          <button id="login-btn" class="btn btn-outline-light" type="button">Log In</button>
+          <button id="register-btn" class="btn btn-primary" style="background: var(--primary-gradient); border: none;" type="button">Sign Up</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero-section">
+      <div class="container">
+        <h1 class="hero-title">
+          Real-Time <span class="hero-highlight">Crypto</span> Price
+        </h1>
+        <p class="hero-subtitle">
+          Track the price of your favorite cryptocurrency and stay updated on market fluctuations.
+        </p>
+      </div>
+    </section>
+
+    <!-- Dropdown selector -->
+    <section class="crypto-selector">
+      <div class="container">
+        <select id="crypto-select" class="form-select w-auto mx-auto">
+          <option value="BINANCE:BTCUSDT">Bitcoin (BTC)</option>
+          <option value="BINANCE:ETHUSDT">Ethereum (ETH)</option>
+          <option value="BINANCE:AVAXUSDT">Avalanche (AVAX)</option>
+          <option value="BINANCE:WLDUSDT">Worldcoin (WLD)</option>
+          <option value="BINANCE:SOLUSDT">Solana (SOL)</option>
+          <option value="BINANCE:XRPUSDT">Ripple (XRP)</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Chart -->
+    <section class="chart-section">
+      <div class="container">
+        <div class="chart-container">
+          <div class="tradingview-widget-container">
+            <div id="tradingview_chart"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container text-center">
+      <p>© 2025 CryptoRiwi. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <!-- TradingView -->
+  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+  <script src="js/exchange.js"></script>
+</body>
+</html>

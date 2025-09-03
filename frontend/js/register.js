@@ -44,3 +44,11 @@ document.getElementById("register-form").addEventListener("submit", async (e) =>
     document.getElementById("register-message").textContent = "Server error";
   }
 });
+
+// Manejo del botón "Back to Home"
+const backBtn = document.getElementById("back-btn");
+if (backBtn) {
+  backBtn.addEventListener("click", () => {
+    window.location.href = "./index.html";
+  });
+}

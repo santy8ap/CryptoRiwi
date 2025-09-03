@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CryptoRiwi - Sobre Nosotros</title>
+    <title>CryptoRiwi - About Us</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
@@ -640,23 +640,26 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="dashboard.html">Inicio</a>
+                        <a id="home-btn" class="nav-link">Home</a>
                     </li>
-
+                   
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Canjear</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Educación</a>
+                        <a id="exchange-btn" class="nav-link">Exchange</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="about_us.html">Nosotros</a>
+                        <a id="education-btn" class="nav-link">Education</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="aboutus-btn" class="nav-link">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="wallet-btn" class="nav-link">Wallet</a>
                     </li>
                 </ul>
-
-                <div class="d-flex gap-2">
-                    <a href="login.html" class="btn btn-outline-custom">Iniciar Sesión</a>
-                    <a href="register.html" class="btn btn-primary-custom">Registrarse</a>
+                
+                <div id="auth-buttons" class="d-flex gap-2" style="display: flex;">
+                    <button id="login-btn" class="btn btn-outline-custom">Login</button>
+                    <button id="register-btn" class="btn btn-primary-custom">Register</button>
                 </div>
             </div>
         </div>
@@ -664,70 +667,70 @@
 
     <div class="hero-section">
         <div class="hero-logo">CryptoRiwi</div>
-        <h1 class="hero-title">Sobre CryptoRiwi</h1>
+        <h1 class="hero-title">About CryptoRiwi</h1>
         <p class="hero-description">
-            Somos una plataforma dedicada a democratizar el acceso a las criptomonedas y la
-            educación financiera, construyendo el futuro de las finanzas digitales.
+            We are a platform dedicated to democratizing access to cryptocurrencies and
+            financial education, building the future of digital finance.
         </p>
     </div>
 
     <div class="mission-vision">
         <div class="card">
-            <h3>Nuestra Misión</h3>
+            <h3>Our mission</h3>
             <p>
-                Hacer que las criptomonedas y las finanzas digitales sean accesibles para
-                todos, proporcionando educación de calidad, herramientas seguras y una
-                experiencia intuitiva que empodere a las personas a tomar control de su
-                futuro financiero.
+                Make cryptocurrencies and digital finance accessible to
+                all, providing quality education, safe tools and a
+                intuitive experience that empowers people to take control of their
+                financial future.
             </p>
         </div>
         <div class="card">
-            <h3>Nuestra Visión</h3>
+            <h3>Our vision</h3>
             <p>
-                Ser la plataforma líder en educación financiera y servicios de criptomonedas
-                en América Latina, creando un ecosistema donde millones de personas
-                puedan participar en la economía digital del futuro.
+                To be the leading platform in financial education and cryptocurrency services
+                in Latin America, creating an ecosystem where millions of people
+                they can participate in the digital economy of the future.
             </p>
         </div>
     </div>
 
 
     <div class="values-section">
-        <h2 class="section-title">Nuestros Valores</h2>
+        <h2 class="section-title">Our values</h2>
         <div class="values-grid">
             <div class="value-card">
                 <div class="value-icon security-icon">
                     <i class="bi bi-shield-lock-fill"></i>
                 </div>
-                <h4>Seguridad</h4>
-                <p>Implementamos los más altos estándares de seguridad para proteger tus activos digitales.</p>
+                <h4>Security</h4>
+                <p>We implement the highest security standards to protect your digital assets.</p>
             </div>
             <div class="value-card">
                 <div class="value-icon community-icon">
                     <i class="bi bi-people-fill"></i>
                 </div>
-                <h4>Comunidad</h4>
-                <p>Construimos una comunidad sólida de aprendices y expertos en criptomonedas.</p>
+                <h4>Community</h4>
+                <p>We built a strong community of cryptocurrency learners and experts.</p>
             </div>
             <div class="value-card">
                 <div class="value-icon innovation-icon">
                     <i class="bi bi-lightbulb-fill"></i>
                 </div>
-                <h4>Innovación</h4>
-                <p>Desarrollamos continuamente nuevas funcionalidades para mejorar tu experiencia.</p>
+                <h4>Innovation</h4>
+                <p>We continually develop new features to improve your experience.</p>
             </div>
             <div class="value-card">
                 <div class="value-icon excellence-icon">
                     <i class="bi bi-award-fill"></i>
                 </div>
-                <h4>Excelencia</h4>
-                <p>Nos comprometemos a ofrecer el mejor servicio y soporte a nuestros usuarios.</p>
+                <h4>Excellence</h4>
+                <p>We are committed to offering the best service and support to our users.</p>
             </div>
         </div>
     </div>
 
     <div class="team-section">
-        <h2 class="section-title">Nuestro Equipo</h2>
+        <h2 class="section-title">Our team</h2>
         <div class="team-grid">
             <div class="team-card">
                 <div class="team-avatar">
@@ -750,13 +753,7 @@
                 <div class="team-name">Daniel Alexander Ariza</div>
                 <div class="team-role">Developer</div>
             </div>
-            <div class="team-card">
-                <div class="team-avatar">
-                    <span class="emoji">👩‍🎨</span>
-                </div>
-                <div class="team-name">María Jose Agudelo</div>
-                <div class="team-role">Designer</div>
-            </div>
+        
             <div class="team-card">
                 <div class="team-avatar">
                     <span class="emoji">🛠️</span>
@@ -769,26 +766,26 @@
 
     <div class="history-section">
         <div class="timeline">
-            <h2 class="section-title">Nuestra Historia</h2>
+            <h2 class="section-title">Our History</h2>
             <div class="timeline-item">
                 <div class="timeline-dot blue-dot"></div>
                 <div class="timeline-content">
-                    <h4>2025 - Fundación</h4>
-                    <p>CryptoRiwi nace con la visión de democratizar el acceso a las criptomonedas.</p>
+                    <h4>2025 - Foundation</h4>
+                    <p>CryptoRiwi was born with the vision of democratizing access to cryptocurrencies.</p>
                 </div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-dot green-dot"></div>
                 <div class="timeline-content">
-                    <h4>2026 - Expansión</h4>
-                    <p>Lanzamos nuestra plataforma educativa y alcanzamos 5,000 usuarios.</p>
+                    <h4>2026 - Expansion</h4>
+                    <p>We launched our educational platform and reached 5,000 users.</p>
                 </div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-dot purple-dot"></div>
                 <div class="timeline-content">
-                    <h4>2027 - Crecimiento</h4>
-                    <p>Ampliamos nuestros servicios financieros digitales y fortalecimos alianzas estratégicas.</p>
+                    <h4>2027 - Growth</h4>
+                    <p>We expanded our digital financial services and strengthened strategic alliances.</p>
                 </div>
             </div>
         </div>
@@ -796,9 +793,9 @@
 
     <div class="footer-section">
         <div class="contact-card">
-            <h3>Contáctanos</h3>
+            <h3>Contact us</h3>
             <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 2rem;">
-                ¿Tienes preguntas? Estamos aquí para ayudarte
+                Have questions? We are here to help you
             </p>
             <div class="contact-info">
                 <div class="contact-item">
@@ -811,29 +808,30 @@
                 <div class="contact-item">
                     <div class="contact-icon">📞</div>
                     <div>
-                        <strong>Teléfono</strong><br>
+                        <strong>Phone</strong><br>
                         +57 300 123 4567
                     </div>
                 </div>
                 <div class="contact-item">
                     <div class="contact-icon">📍</div>
                     <div>
-                        <strong>Oficina</strong><br>
+                        <strong>Office</strong><br>
                         Medellin - De moda Outlet, Colombia
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="cta-card">
-            <h3>¿Listo para comenzar?</h3>
+        <div id="cta-register" class="cta-card">
+            <h3>¿Ready to join?</h3>
             <p class="cta-description">
-                Únete a nuestra comunidad y comienza tu jornada en el mundo cripto
+                Join our community and start your journey in the crypto world
             </p>
-            <button class="cta-button"><a href="register.html">Crear Cuenta Gratis</a></button>
+            <button id="ctaregister-btn" class="cta-button">Create Free Account</button>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="./js/about_us.js"></script>
 </body>
 
 </html>

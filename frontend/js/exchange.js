@@ -1,10 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // --- LOGOUT automático si entro a index.html ---
     if (window.location.pathname.endsWith("index.html")) {
         if (localStorage.getItem("isLoggedIn") == "true") {
             localStorage.clear();
         }
     }
 
+    if (localStorage.getItem("isLoggedIn") !== "true") {
+        window.location.href = "./login.html";
+        return;
+    }
+
+    // --- Referencias a botones ---
     const authButtons = document.getElementById("auth-buttons");
     const loginBtn = document.getElementById("login-btn");
     const registerBtn = document.getElementById("register-btn"); 
@@ -16,8 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     console.log("Valor de isLoggedIn en localStorage:", localStorage.getItem("isLoggedIn"));
 
-    if (localStorage.getItem("isLoggedIn") == "true"){
-        authButtons.innerHTML = `<button id="logout-btn" class="btn btn-outline-light" type="button">Cerrar sesión</button>`;
+    // --- Control Login / Logout ---
+    if (localStorage.getItem("isLoggedIn") == "true") {
+        authButtons.innerHTML = `<button id="logout-btn" class="btn btn-outline-light" type="button">Logout</button>`;
         const logoutBtn = document.getElementById("logout-btn");
         if (logoutBtn) {
             logoutBtn.addEventListener("click", () => {
@@ -28,13 +36,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // --- Navegación de la navbar ---
     if (aboutUsBtn){
         aboutUsBtn.addEventListener("click", () => {
             window.location.href = "./about_us.html";
         });
     }
 
-    if (homeBtn) {
+    if (homeBtn){
         homeBtn.addEventListener("click", () => {
             window.location.href = "./dashboard.html";
         });
@@ -70,22 +79,33 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- NUEVO: enlaces de las tarjetas del index ---
-    const cardLinks = document.querySelectorAll(".card-link");
-
-    if (cardLinks.length > 0) {
-        // Primer link → "Comenzar a aprender"
-        cardLinks[0].addEventListener("click", (e) => {
-            e.preventDefault();
-            window.location.href = "./courses.html";
+    // --- Función para crear TradingView Widget ---
+    function loadTradingView(symbol) {
+        document.getElementById("tradingview_chart").innerHTML = ""; // limpiar antes de crear otro
+        new TradingView.widget({
+            "container_id": "tradingview_chart",
+            "autosize": true,
+            "symbol": symbol,
+            "interval": "1",
+            "timezone": "Etc/UTC",
+            "theme": "dark",
+            "style": "1",
+            "locale": "es",
+            "enable_publishing": false,
+            "studies": ["Volume@tv-basicstudies"],
+            "withdateranges": true,
+            "range": "1D"
         });
     }
 
-    if (cardLinks.length > 1) {
-        // Segundo link → "Ver precio"
-        cardLinks[1].addEventListener("click", (e) => {
-            e.preventDefault();
-            window.location.href = "./exchange.html";
+    // --- Render inicial con BTC ---
+    loadTradingView("BINANCE:BTCUSDT");
+
+    // --- Listener del selector ---
+    const cryptoSelect = document.getElementById("crypto-select");
+    if (cryptoSelect) {
+        cryptoSelect.addEventListener("change", (e) => {
+            loadTradingView(e.target.value);
         });
     }
 });

@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RiwiWallet - Descubre el poder de RiwiCoin</title>
-    
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>RiwiWallet - Discover the power of RiwiCoin</title>
+
     <!-- Bootstrap CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+
     <style>
         :root {
+            --navbar-height: 72px;
             --primary-gradient: linear-gradient(135deg, #6366f1, #8b5cf6);
             --bg-gradient: linear-gradient(135deg, #1a1d3a 0%, #2d1b69 35%, #4338ca 100%);
             --card-bg: rgba(99, 102, 241, 0.1);
@@ -21,37 +22,40 @@
             --text-muted: #94a3b8;
         }
 
+        * { box-sizing: border-box; }
+        html, body { height: 100%; }
         body {
             font-family: 'Inter', sans-serif;
             background: var(--bg-gradient);
             color: white;
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding-top: var(--navbar-height);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Custom animations */
+        /* Animations */
         @keyframes glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.5); }
-            50% { box-shadow: 0 0 30px rgba(99, 102, 241, 0.8); }
+            0%,100% { box-shadow: 0 0 20px rgba(99,102,241,0.5); }
+            50% { box-shadow: 0 0 30px rgba(99,102,241,0.8); }
         }
-
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Custom navbar */
+        /* Navbar */
         .navbar-custom {
-            background: rgba(26, 29, 58, 0.9) !important;
+            height: var(--navbar-height);
+            background: rgba(26,29,58,0.9) !important;
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--card-border);
-            padding: 1rem 0;
+            padding: 0.5rem 0;
         }
-
-        .navbar-brand {
-            font-weight: 700;
-            font-size: 1.5rem;
-        }
-
+        .navbar-brand { font-weight: 700; font-size: 1.25rem; color: #fff; }
         .navbar-nav .nav-link {
             color: var(--text-muted) !important;
             font-weight: 500;
@@ -59,318 +63,139 @@
             padding: 0.5rem 1rem !important;
             border-radius: 8px;
             transition: all 0.3s ease;
+            pointer-events: all;
         }
-
         .navbar-nav .nav-link:hover,
-        .navbar-nav .nav-link.active {
-            color: white !important;
-            background: var(--card-bg);
-        }
+        .navbar-nav .nav-link.active { color: white !important; background: var(--card-bg); }
 
-        /* Custom buttons */
+        /* Buttons */
         .btn-primary-custom {
             background: var(--primary-gradient);
             border: none;
             font-weight: 600;
-            padding: 0.75rem 2rem;
-            border-radius: 12px;
+            padding: 0.6rem 1.25rem;
+            border-radius: 10px;
             transition: all 0.3s ease;
-            animation: glow 2s infinite;
+            animation: glow 2.5s infinite;
+            color: #fff;
         }
-
-        .btn-primary-custom:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
-        }
-
         .btn-outline-custom {
             color: var(--text-muted);
-            border: 1px solid #475569;
-            font-weight: 500;
-            padding: 0.75rem 1.5rem;
+            border: 1px solid rgba(255,255,255,0.06);
+            padding: 0.5rem 1rem;
             border-radius: 8px;
-            transition: all 0.3s ease;
         }
 
-        .btn-outline-custom:hover {
-            color: #6366f1;
-            border-color: #6366f1;
-            background: transparent;
-        }
-
-        /* Hero section */
-        .hero-section {
-            padding: 8rem 0 4rem;
-            text-align: center;
-            animation: fadeInUp 1s ease-out;
-        }
-
+        /* Hero */
+        .hero-section { padding: 5.5rem 0 3rem; text-align:center; animation: fadeInUp 1s ease-out; }
         .hero-title {
-            font-size: 3.5rem;
+            font-size: 3rem;
             font-weight: 800;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #ffffff, #a5b4fc);
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg,#ffffff,#a5b4fc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
+        .hero-highlight { background: var(--primary-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .hero-subtitle { font-size: 1.05rem; color: var(--text-muted); line-height:1.6; margin-bottom:1.75rem; }
 
-        .hero-highlight {
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+        .btn-hero { padding: 0.9rem 1.6rem; border-radius:12px; font-weight:600; margin:.4rem; border:0; text-decoration:none; display:inline-block; }
+        .btn-hero-primary { background: var(--primary-gradient); color:#fff; }
+        .btn-hero-secondary { background: rgba(255,255,255,0.03); color:#c7b7ff; border:1px solid rgba(255,255,255,0.03); }
 
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            margin-bottom: 3rem;
-            line-height: 1.6;
-        }
-
-        .btn-hero {
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            font-weight: 600;
-            margin: 0.5rem;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            border: none;
-        }
-
-        .btn-hero-primary {
-            background: var(--primary-gradient);
-            color: white;
-        }
-
-        .btn-hero-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
-            color: white;
-        }
-
-        .btn-hero-secondary {
-            background: var(--card-bg);
-            color: #a5b4fc;
-            border: 1px solid var(--card-border);
-        }
-
-        .btn-hero-secondary:hover {
-            background: rgba(99, 102, 241, 0.2);
-            color: white;
-        }
-
-        /* RiwiCoin Info Section */
-        .coin-info-section {
-            padding: 4rem 0;
-        }
-
+        /* Coin info */
+        .coin-info-section { padding: 4rem 0; }
         .coin-info-card {
-            background: rgba(99, 102, 241, 0.05);
+            background: rgba(99,102,241,0.05);
             border: 1px solid var(--card-border);
             border-radius: 24px;
-            padding: 4rem 2rem;
+            padding: 2.5rem;
             backdrop-filter: blur(10px);
             text-align: center;
         }
-
-        .coin-logo {
-            width: 120px;
-            height: 120px;
-            background: var(--primary-gradient);
-            border-radius: 50%;
-            margin: 0 auto 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: bold;
-            color: white;
-        }
-
-        .coin-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-
-        .coin-description {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
+        .coin-logo { width:96px; height:96px; border-radius:50%; background:var(--primary-gradient); display:inline-flex; align-items:center; justify-content:center; font-weight:800; color:#fff; margin-bottom:1rem; }
+        .coin-title { font-size:1.6rem; margin-bottom:.5rem; }
+        .coin-description { color: var(--text-muted); line-height:1.6; }
 
         /* Ecosystem cards */
-        .ecosystem-section {
-            padding: 4rem 0;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-muted);
-            margin-bottom: 4rem;
-            font-size: 1.1rem;
-        }
-
+        .ecosystem-section { padding: 4rem 0; }
         .ecosystem-card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 16px;
-            padding: 2rem;
+            padding: 1.4rem;
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
             height: 100%;
-            margin-bottom: 2rem;
         }
+        .ecosystem-card:hover { transform: translateY(-6px); box-shadow: 0 10px 30px rgba(0,0,0,0.35); border-color: rgba(99,102,241,0.28); }
+        .card-icon { width:56px; height:56px; border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:.8rem; font-size:1.25rem; }
 
-        .ecosystem-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(99, 102, 241, 0.5);
-            background: rgba(99, 102, 241, 0.15);
-        }
+        .icon-learn { background: linear-gradient(135deg,#6366f1,#8b5cf6); }
+        .icon-buy { background: linear-gradient(135deg,#10b981,#059669); }
+        .icon-price { background: linear-gradient(135deg,#f59e0b,#d97706); }
+        .icon-exchange { background: linear-gradient(135deg,#8b5cf6,#a855f7); }
 
-        .card-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 12px;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
+        .card-title { font-weight:600; margin-bottom:.45rem; }
+        .card-description { color: var(--text-muted); margin-bottom:.6rem; }
 
-        .icon-learn { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
-        .icon-buy { background: linear-gradient(135deg, #10b981, #059669); }
-        .icon-price { background: linear-gradient(135deg, #f59e0b, #d97706); }
-        .icon-exchange { background: linear-gradient(135deg, #8b5cf6, #a855f7); }
+        /* Stats */
+        .stats-section { padding: 2rem 0; }
+        .stat-card { text-align:center; padding:1rem; }
+        .stat-number { font-size:2rem; font-weight:800; color:white; margin-bottom:.5rem; }
+        .stat-label { color: var(--text-muted); font-size:.9rem; }
 
-        .card-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .card-description {
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-            line-height: 1.5;
-        }
-
-        .card-link {
-            color: #6366f1;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .card-link:hover {
-            color: #8b5cf6;
-        }
-
-        /* Stats section */
-        .stats-section {
-            padding: 2rem 0;
-        }
-
-        .stat-card {
-            text-align: center;
-            padding: 1rem;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: var(--primary-gradient);
-            padding: 4rem 0;
-            text-align: center;
-            margin-top: 4rem;
-        }
-
-        .cta-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: white;
-        }
-
-        .cta-description {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            color: rgba(255, 255, 255, 0.9);
-        }
+        /* CTA */
+        .cta-section { background: var(--primary-gradient); padding: 4rem 0; text-align:center; margin-top: 2.5rem; }
+        .cta-title { font-size:1.6rem; font-weight:700; color:white; margin-bottom:.5rem; }
+        .cta-description { color: rgba(255,255,255,0.92); margin-bottom:1rem; }
 
         .btn-cta {
             background: white;
             color: #6366f1;
-            padding: 1rem 2rem;
+            padding: .9rem 1.6rem;
             border-radius: 12px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            border: none;
+            font-weight:600;
+            border:2px solid #6366f1;
+            transition: all .3s;
+            text-decoration:none;
         }
+        .btn-cta:hover { background: linear-gradient(135deg,#e9cc0e,#8b5cf6); color:#fff; border-color:#8b5cf6; box-shadow: 0 8px 24px rgba(99,102,241,0.25); }
 
-        .btn-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            color: #6366f1;
+        /* Features */
+        .features-section .feature-icon { font-size:2.4rem; margin-bottom:.5rem; color:transparent; background:var(--primary-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+
+        /* Footer (fondo negro mejorado) */
+        .site-footer{
+          background:#000000cf;
+          color:#dfe7ff;
+          border-top:1px solid rgba(255,255,255,0.03);
+          margin-top:auto;
+          padding:2.25rem 0;
+          font-size:.95rem;
         }
+        .site-footer a{color:rgba(255,255,255,0.88);text-decoration:none}
+        .site-footer a:hover{text-decoration:underline;color:#fff}
+        .footer-brand{font-weight:800;font-size:1.15rem;color:#fff}
+        .footer-title{font-weight:700;margin-bottom:.5rem;color:#fff}
+        .text-muted-small{color:rgba(255,255,255,0.65)}
+        .social-btn{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:8px;background:rgba(255,255,255,0.03);color:#fff;margin-right:.4rem}
+        .social-btn:hover{transform:translateY(-3px);background:rgba(99,102,241,0.12)}
+        .form-control{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.04);color:#e9f0ff}
+        .form-control::placeholder{color:rgba(255,255,255,0.45)}
+        hr.footer-sep{border-top:1px solid rgba(255,255,255,0.04);margin:1.25rem 0}
 
-        /* Features section */
-        .features-section {
-            padding: 4rem 0;
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .btn-hero {
-                display: block;
-                width: 100%;
-                max-width: 300px;
-                margin: 0.5rem auto;
-            }
-            
-            .coin-info-card {
-                padding: 2rem 1rem;
-            }
+        /* Responsive */
+        @media (max-width:768px){
+            .hero-title { font-size:2rem; }
+            .btn-hero { width:100%; max-width:320px; margin:0.5rem auto; display:block; }
+            .site-footer .row > [class*="col-"] { text-align:center; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
+    
+     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">CryptoRiwi</a>
@@ -382,245 +207,176 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Inicio</a>
+                        <a id="home-btn" class="nav-link">Home</a>
                     </li>
                    
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Canjear</a>
+                        <a id="exchange-btn" class="nav-link">Exchange</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Educación</a>
+                        <a id="education-btn" class="nav-link">Education</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Nosotros</a>
+                        <a id="aboutus-btn" class="nav-link">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="wallet-btn" class="nav-link">Wallet</a>
                     </li>
                 </ul>
                 
                 <div id="auth-buttons" class="d-flex gap-2">
-                    <button id="logout-btn" class="btn btn-outline-custom">Logout</button>
+                    <button id="login-btn" class="btn btn-outline-custom">Login</button>
+                    <button id="register-btn" class="btn btn-primary-custom">Register</button>
+                    <button id="logout-btn" class="btn btn-outline-light" type="button" style="display: none;">Logout</button>
                 </div>
             </div>
         </div>
     </nav>
 
+    <main>
     <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 col-xl-8">
-                    <h1 class="hero-title">
-                        Descubre el poder de <span class="hero-highlight">RiwiCoin</span>
-                    </h1>
-                    <p class="hero-subtitle">
-                        La primera criptomoneda diseñada específicamente para la educación financiera.
-                        Aprende, gana y utiliza RiwiCoin para acceder a productos y servicios exclusivos aqui en Riwi.
-                    </p>
-                    <div class="d-flex justify-content-center flex-wrap">
-                        <a href="#" class="btn btn-hero btn-hero-primary">
-                            Como obtener RiwiCoin? <i class="bi bi-arrow-right"></i>
-                        </a>
-                        <a href="#" class="btn btn-hero btn-hero-secondary">
-                            Dias de recompensas
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features highlight -->
-    <section class="features-section">
-        <div class="container">
-            <div class="row text-center g-4">
-                <div class="col-md-4">
-                    <div class="feature-icon">
-                        <i class="bi bi-shield-check"></i>
-                    </div>
-                    <h5>100% Seguro</h5>
-                    <p class="text-white">Informate en un entorno Seguro</p>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-icon">
-                        <i class="bi bi-mortarboard"></i>
-                    </div>
-                    <h5>Educativo</h5>
-                    <p class="text-white">Aprende mientras ganas recompensas</p>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-icon">
-                        <i class="bi bi-lightning"></i>
-                    </div>
-                    <h5>Rápido</h5>
-                    <p class="text-white">recompensas instantáneas cada que ganes un reto</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- RiwiCoin Info -->
-    <section class="coin-info-section">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="coin-info-card">
-                        <div class="coin-logo">RWC</div>
-                        <h2 class="coin-title">¿Qué es RiwiCoin?</h2>
-                        <p class="coin-description">
-                            RiwiCoin (RWC) es nuestra criptomoneda educativa que recompensa el aprendizaje y permite
-                            acceder a productos y servicios dentro del ecosistema Riwi. Cada reto completado, cada
-                            lección aprendida te acerca más a dominar la tabla de clasificación.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Ecosystem -->
-    <section class="ecosystem-section">
-        <div class="container">
-            <h2 class="section-title">El Ecosistema RiwiCoin</h2>
-            <p class="section-subtitle">Todo lo que puedes hacer con tu RiwiCoin</p>
-            
-            <div class="row g-4 mb-5">
-                <div class="col-lg-3 col-md-6">
-                    <div class="ecosystem-card">
-                        <div class="card-icon icon-learn">
-                            <i class="bi bi-book"></i>
-                        </div>
-                        <h3 class="card-title">Aprende</h3>
-                        <p class="card-description">
-                            Completa cursos y gana Experiencia como programador
-                        </p>
-                        <a href="#" class="card-link">
-                            Comenzar a aprender <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="ecosystem-card">
-                        <div class="card-icon icon-buy">
-                            <i class="bi bi-wallet2"></i>
-                        </div>
-                        <h3 class="card-title">Comprar RiwiCoin</h3>
-                        <p class="card-description">
-                            Adquiere RiwiCoin de forma segura y sencilla
-                        </p>
-                        <a href="#" class="card-link">
-                            Comprar RWC <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="ecosystem-card">
-                        <div class="card-icon icon-price">
-                            <i class="bi bi-graph-up"></i>
-                        </div>
-                        <h3 class="card-title">Precio RiwiCoin</h3>
-                        <p class="card-description">
-                            Monitorea el valor de RiwiCoin en tiempo real
-                        </p>
-                        <a href="#" class="card-link">
-                            Ver precio <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="ecosystem-card">
-                        <div class="card-icon icon-exchange">
-                            <i class="bi bi-arrow-repeat"></i>
-                        </div>
-                        <h3 class="card-title">Canjear Rewards</h3>
-                        <p class="card-description">
-                            Usa tus RiwiCoin para obtener productos y servicios
-                        </p>
-                        <a href="#" class="card-link">
-                            Canjear RWC <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Stats -->
-            <div class="stats-section">
-                <div class="row g-4">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="stat-card">
-                            <div class="stat-number">1.5M</div>
-                            <div class="stat-label">RiwiCoin en Circulación</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="stat-card">
-                            <div class="stat-number">$0,000.1</div>
-                            <div class="stat-label">Precio Actual RWC</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="stat-card">
-                            <div class="stat-number">5</div>
-                            <div class="stat-label">Holders de RiwiCoin</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="stat-card">
-                            <div class="stat-number">10+</div>
-                            <div class="stat-label">Productos Disponibles</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <h2 class="cta-title">¿Listo para unirte a la revolución RiwiCoin?</h2>
-                    <p class="cta-description">
-                        Comienza tu journey educativo y gana RiwiCoin mientras aprendes
-                    </p>
-                    <a href="#" class="btn btn-cta btn-cta-hover">
-                        Obtener Mi Primera RiwiCoin
+<section class="hero-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-8">
+                <h1 class="hero-title">
+                    Discover the power of <span class="hero-highlight">RiwiCoin</span>
+                </h1>
+                <p class="hero-subtitle">
+                    The first cryptocurrency platform specifically designed for financial education. 
+                    Learn, earn, and use RiwiCoin to access exclusive products and services here at Riwi.
+                </p>
+                <div class="d-flex justify-content-center flex-wrap">
+                    <a href="https://pump.fun/coin/FnJ4E26ov6jQwtp7Q61cLeF8Z6eosox8dgmM4pWJkXjD" target="_blank" class="btn btn-hero btn-hero-primary">
+                        How to get RiwiCoin? <i class="bi bi-arrow-right"></i>
                     </a>
-                    <style>
-                        .btn-cta-hover {
-                            background: white;
-                            color: #6366f1;
-                            border: 2px solid #6366f1;
-                            box-shadow: 0 0 0 rgba(99,102,241,0);
-                            transition: 
-                                background 0.3s,
-                                color 0.3s,
-                                border-color 0.3s,
-                                box-shadow 0.3s;
-                        }
-                        .btn-cta-hover:hover {
-                            background: linear-gradient(135deg, #e9cc0e, #8b5cf6);
-                            color: #fff;
-                            border-color: #8b5cf6;
-                            box-shadow: 0 8px 24px rgba(99,102,241,0.25);
-                        }
-                    </style>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+
+<!-- Features highlight -->
+<section class="features-section">
+    <div class="container">
+        <div class="row text-center g-4">
+            <div class="col-md-4">
+                <div class="feature-icon">
+                    <i class="bi bi-shield-check"></i>
+                </div>
+                <h5>100% Secure</h5>
+                <p class="text-white">Get informed in a safe environment</p>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-icon">
+                    <i class="bi bi-mortarboard"></i>
+                </div>
+                <h5>Educational</h5>
+                <p class="text-white">Learn while earning rewards</p>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-icon">
+                    <i class="bi bi-lightning"></i>
+                </div>
+                <h5>Fast</h5>
+                <p class="text-white">Instant rewards every time you complete a challenge</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- RiwiCoin Info -->
+<section class="coin-info-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="coin-info-card">
+                    <div class="coin-logo">RWC</div>
+                    <h2 class="coin-title">What is RiwiCoin?</h2>
+                    <p class="coin-description">
+                        RiwiCoin (RWC) is our educational cryptocurrency that rewards learning and allows 
+                        access to products and services within the Riwi ecosystem. Every challenge completed, 
+                        every lesson learned brings you closer to mastering the leaderboard.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ecosystem-section">
+    <div class="container">
+        <h2 class="section-title text-center">The RiwiCoin Ecosystem</h2>
+        <p class="section-subtitle text-center">Everything you can do with your RiwiCoin</p>
+        <div class="row justify-content-center g-4 mb-5">
+            <div class="col-lg-3 col-md-6 d-flex justify-content-center">
+                <div class="ecosystem-card w-100">
+                    <div class="card-icon icon-learn mx-auto">
+                        <i class="bi bi-book"></i>
+                    </div>
+                    <h3 class="card-title text-center">Learn</h3>
+                    <p class="card-description text-center">
+                        Complete courses and gain experience as a programmer
+                    </p>
+                    <a href="./courses.html" class="card-link text-center d-block">
+                        Start learning <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="ecosystem-card">
+                    <div class="card-icon icon-price">
+                        <i class="bi bi-graph-up"></i>
+                    </div>
+                    <h3 class="card-title">Allcoins Price</h3>
+                    <p class="card-description">
+                        See real-time prices of the main cryptocurrencies
+                    </p>
+                    <a href="./exchange.html" class="card-link">
+                        View price <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="site-footer" role="contentinfo" aria-label="Site Footer">
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-md-4">
+        <a href="./dashboard.html" class="footer-brand">CryptoRiwi</a>
+        <p class="text-muted-small mt-2">
+          Educational cryptocurrency platform. Earn RiwiCoins by learning and redeem them for products and services.
+        </p>
+      </div>
+
+      <div class="col-md-2">
+        <h6 class="footer-title">Contact</h6>
+        <p class="text-muted-small mb-1"><a href="mailto:support@cryptoriwi.example" rel="noopener noreferrer">support@cryptoriwi.example</a></p>
+        <p class="text-muted-small mb-0">24/7 Help Center</p>
+      </div>
+    </div>
+
+    <hr class="footer-sep">
+
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+      <small class="text-muted-small">© <time datetime="2025">2025</time> CryptoRiwi. All rights reserved.</small>
+    </div>
+  </div>
+</footer>
 
     <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    
+
     <script>
-        // Smooth scroll animations
+        // Mantengo la lógica original de animaciones y contador sin alterar rutas ni comportamiento.
         document.addEventListener('DOMContentLoaded', function() {
-            // Animate cards on scroll
             const cards = document.querySelectorAll('.ecosystem-card');
-            
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach((entry, index) => {
                     if (entry.isIntersecting) {
@@ -630,22 +386,14 @@
                     }
                 });
             });
+            cards.forEach(card => { observer.observe(card); });
 
-            cards.forEach(card => {
-                observer.observe(card);
-            });
-
-            // Navbar scroll effect
             window.addEventListener('scroll', function() {
                 const navbar = document.querySelector('.navbar');
-                if (window.scrollY > 50) {
-                    navbar.style.background = 'rgba(26, 29, 58, 0.95)';
-                } else {
-                    navbar.style.background = 'rgba(26, 29, 58, 0.9)';
-                }
+                if (window.scrollY > 50) navbar.style.background = 'rgba(26, 29, 58, 0.95)';
+                else navbar.style.background = 'rgba(26, 29, 58, 0.9)';
             });
 
-            // Counter animation
             const counters = document.querySelectorAll('.stat-number');
             const observerCounters = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -653,10 +401,10 @@
                         const counter = entry.target;
                         const target = counter.textContent;
                         let current = 0;
-                        const increment = target.includes('M') ? 50000 : 
-                                        target.includes('+') ? 100 : 
+                        const increment = target.includes('M') ? 50000 :
+                                        target.includes('+') ? 100 :
                                         target.includes('$') ? 0.01 : 1;
-                        
+
                         const timer = setInterval(() => {
                             if (target.includes('M')) {
                                 current += increment;
@@ -685,17 +433,15 @@
                                 }
                             }
                         }, 20);
-                        
+
                         observerCounters.unobserve(entry.target);
                     }
                 });
             });
-
-            counters.forEach(counter => {
-                observerCounters.observe(counter);
-            });
+            counters.forEach(counter => { observerCounters.observe(counter); });
         });
     </script>
+
     <script src="./js/dashboard.js"></script>
 </body>
 </html>

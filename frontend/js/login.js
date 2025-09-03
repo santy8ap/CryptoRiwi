@@ -33,3 +33,11 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
     document.getElementById("login-message").textContent = "⚠️ Server error";
   }
 });
+
+// Manejo del botón "Back to Home"
+const backBtn = document.getElementById("back-btn");
+if (backBtn) {
+  backBtn.addEventListener("click", () => {
+    window.location.href = "./index.html";
+  });
+}

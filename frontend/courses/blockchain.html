@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CryptoRiwi — Introduction to Blockchain</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+<style>
+  body{background:#0f1724;color:#e6eef8;font-family:Inter,system-ui,Roboto,Arial}
+  .wrap{max-width:900px;margin:auto;padding:1rem}
+  .card-simple{background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.12);border-radius:12px;padding:1rem;margin-bottom:1rem}
+  iframe{width:100%;aspect-ratio:16/9;border-radius:8px}
+  .option{background:rgba(255,255,255,0.02);padding:.6rem;border-radius:8px;border:1px solid rgba(255,255,255,0.08);cursor:pointer;margin-bottom:.5rem}
+  .option.correct{border-color:#10b981;background:rgba(16,185,129,0.1)}
+  .option.wrong{border-color:#ef4444;background:rgba(239,68,68,0.1)}
+  .option.disabled{opacity:.6;pointer-events:none}
+  #result{font-weight:600;margin-top:1rem;color:#ffd86b}
+</style>
+</head>
+<body>
+
+<main class="wrap">
+  <header class="card-simple">
+    <h1 style="margin:0;font-size:1.5rem">Lesson: Introduction to Blockchain</h1>
+    <p style="color:#9aa6c0;margin:0">Watch the video, read the content, and answer the questions</p>
+  </header>
+
+  <section class="card-simple">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/V9Kr2SujqHw?si=395NvyuVlgwJ8E2i" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </section>
+
+  <section class="card-simple">
+    <h3>Content</h3>
+    <p>Blockchain is a revolutionary technology that enables the creation of secure and decentralized digital records. It was introduced in 2008 by a person or group under the pseudonym Satoshi Nakamoto as the foundation for the cryptocurrency Bitcoin. Unlike traditional databases, which are controlled by a central entity, a blockchain is maintained by a distributed network of nodes, making it resistant to censorship and manipulation.</p>
+    <p>One of the key features of blockchain is its immutability: once a block of data is added to the chain, it cannot be altered without the consensus of the majority of the network. This provides a high level of security and trust in the stored data. In addition, transactions on a blockchain are transparent and can be verified by anyone, increasing trust among the involved parties.</p>
+    <p>The applications of blockchain go beyond cryptocurrencies. It is used in various industries, including finance, supply chain, healthcare, and electronic voting. Smart contracts, which are self-executing programs with predefined rules, allow processes to be automated and reduce the need for intermediaries.</p>
+    <p>Despite its advantages, blockchain also faces challenges such as scalability, energy consumption, and legal regulations. However, with continued technological development and growing adoption, blockchain is expected to play a crucial role in the digital future.</p>
+  </section>
+
+  <section class="card-simple">
+    <h3>Download Blockchain PDF</h3>
+    <p>You can download the PDF document with additional information about Blockchain by clicking the button below:</p>
+    <a href="frontend/courses/pdfs/blockchain.pdf" download class="btn btn-primary">
+      Download PDF
+    </a>
+  </section>
+
+  <section class="card-simple">
+    <h3>Quiz</h3>
+    <p style="color:#9aa6c0">Click on the answers. At the end, you will see your score.</p>
+    <div id="quiz">
+
+      <!-- Question 1 -->
+      <p><b>1. What is Blockchain?</b></p>
+      <div class="option" data-correct="true">A distributed and secure ledger</div>
+      <div class="option" data-correct="false">A local database on a single server</div>
+      <div class="option" data-correct="false">A programming language</div>
+      <div class="option" data-correct="false">A type of antivirus</div>
+
+      <!-- Question 2 -->
+      <p><b>2. Who proposed the concept of Blockchain with Bitcoin?</b></p>
+      <div class="option" data-correct="true">Satoshi Nakamoto</div>
+      <div class="option" data-correct="false">Elon Musk</div>
+      <div class="option" data-correct="false">Bill Gates</div>
+      <div class="option" data-correct="false">Mark Zuckerberg</div>
+
+      <!-- Question 3 -->
+      <p><b>3. What does immutability in Blockchain mean?</b></p>
+      <div class="option" data-correct="true">That data cannot be easily altered</div>
+      <div class="option" data-correct="false">That data is automatically deleted</div>
+      <div class="option" data-correct="false">That the system does not need the internet</div>
+      <div class="option" data-correct="false">That data changes periodically</div>
+
+      <!-- Question 4 -->
+      <p><b>4. Which of the following is an advantage of Blockchain?</b></p>
+      <div class="option" data-correct="true">Transparency in transactions</div>
+      <div class="option" data-correct="false">Centralization of information</div>
+      <div class="option" data-correct="false">Access restricted only to the creator</div>
+      <div class="option" data-correct="false">Low data security</div>
+
+      <!-- Question 5 -->
+      <p><b>5. What is a smart contract?</b></p>
+      <div class="option" data-correct="true">A program that executes automatically when conditions are met</div>
+      <div class="option" data-correct="false">A verbal agreement between two people</div>
+      <div class="option" data-correct="false">A paper contract digitally signed</div>
+      <div class="option" data-correct="false">A system to store emails</div>
+
+      <!-- Question 6 -->
+      <p><b>6. In which sector is Blockchain NOT currently applied?</b></p>
+      <div class="option" data-correct="true">CD music playback</div>
+      <div class="option" data-correct="false">Product traceability</div>
+      <div class="option" data-correct="false">Voting systems</div>
+      <div class="option" data-correct="false">Digital identity</div>
+
+      <!-- Question 7 -->
+      <p><b>7. Which feature makes Blockchain independent from a single entity?</b></p>
+      <div class="option" data-correct="true">Decentralization</div>
+      <div class="option" data-correct="false">Connection speed</div>
+      <div class="option" data-correct="false">Exclusive use of cryptocurrencies</div>
+      <div class="option" data-correct="false">Manual signing of blocks</div>
+
+    </div>
+    <div id="result"></div>
+  </section>
+
+  <!-- Botón Back to Dashboard -->
+  <section class="card-simple text-center">
+    <a href="#" id="back-dashboard-btn" class="btn btn-primary">
+      ← Back to Dashboard
+    </a>
+  </section>
+
+  <script>
+  (function(){
+    const quiz = document.getElementById('quiz');
+    const result = document.getElementById('result');
+
+    // Build question groups: for each <p>, gather following .option siblings until the next <p>
+    const headers = Array.from(quiz.querySelectorAll(':scope > p'));
+    const groups = headers.map(p => {
+      const opts = [];
+      let el = p.nextElementSibling;
+      while (el && el.tagName !== 'P') {
+        if (el.classList && el.classList.contains('option')) opts.push(el);
+        el = el.nextElementSibling;
+      }
+      return { header: p, options: opts, answered: false };
+    });
+
+    let answeredCount = 0;
+    const total = groups.length;
+
+    quiz.addEventListener('click', e => {
+      const opt = e.target.closest('.option');
+      if (!opt) return;
+
+      // Find the group this option belongs to
+      const group = groups.find(g => g.options.includes(opt));
+      if (!group || group.answered) return; // already answered this question
+
+      const isCorrect = opt.dataset.correct === "true";
+      if (isCorrect) {
+        opt.classList.add('correct');
+        alert("✅ Correct");
+      } else {
+        opt.classList.add('wrong');
+        alert("❌ Incorrect");
+      }
+
+      // Disable only options from this question
+      group.options.forEach(o => o.classList.add('disabled'));
+      group.answered = true;
+      answeredCount++;
+
+      // Recompute score: number of groups that have the correct option marked
+      const correctCount = groups.reduce((acc, g) => {
+        return acc + (g.options.some(o => o.classList.contains('correct')) ? 1 : 0);
+      }, 0);
+
+      if (answeredCount === total) {
+        result.textContent = `Your final score: ${correctCount} out of ${total} correct answers 🎉`;
+      }
+    });
+
+    // --- Back to Dashboard button logic ---
+    const backBtn = document.getElementById("back-dashboard-btn");
+    if (backBtn) {
+      backBtn.addEventListener("click", () => {
+        const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+        window.location.href = isLoggedIn ? "../dashboard.html" : "../index.html";
+      });
+    }
+
+  })();
+  </script>
+
+</main>
+</body>
+</html>

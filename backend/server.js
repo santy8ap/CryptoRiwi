@@ -115,6 +115,10 @@ app.get('/register', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'frontend', 'register.html'));
 });
 
+app.get('/courses', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'frontend', 'courses.hmtl'));
+})
+
 app.listen(PORT, () => {
     console.log("Server running on port " + PORT);
 });
